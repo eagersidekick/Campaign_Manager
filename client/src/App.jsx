@@ -1,15 +1,27 @@
-// import components/pages here
-import Header from './components/Header'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Campaign from './pages/Campaign';
+import PlayerPage from './pages/PlayerPage';
+import TableTalk from './pages/TableTalk';
+
 import 'bulma/css/bulma.min.css';
 
-const App = () => {
+function App() {
     return (
-        <div>
-            <Header />
-            {/* <Settings />
-            <Footer /> */}
-        </div>
-    )
-};
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/campaign/:campaignId" element={<Campaign />} />
+          <Route path="/player" element={<PlayerPage />} />
+          <Route path="/tabletalk" element={<TableTalk />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    );
+  }
+  
 
 export default App;

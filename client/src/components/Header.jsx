@@ -1,12 +1,16 @@
-export default function Header(){
-    return(
-        <div className="navbar">
-            <div className="navbar-start">
-                <div className="navbar-brand">Campaign Manager</div>
-            </div>
-            <div className="navbar-end">
-                <div className="navbar-item button">Login</div>
-            </div>
-        </div>
-    )
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+function Header() {
+  return (
+    <header>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/player">Player Page</Link>
+        <Link to="/tabletalk">Table Talk</Link>
+      </nav>
+    </header>
+  );
 }
+
+export default Header;
