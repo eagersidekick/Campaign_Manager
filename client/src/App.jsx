@@ -10,7 +10,8 @@ import Signup from './pages/Signup';
 import 'bulma/css/bulma.min.css';
 
 function App() {
-    return (
+  return (
+    <div className='App'>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -23,8 +24,9 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
-    );
-  }
-  
+    </div>
+  );
+}
+
 
 export default App;
