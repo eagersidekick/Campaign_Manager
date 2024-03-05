@@ -1,11 +1,9 @@
-import React from 'react';
-import 'bulma/css/bulma.min.css';
-
 function Login() {
 
   return (
     <div className='content'>
       <div className='section'>
+        <p className="title has-text-centered">Login</p>
         <form>
           <div className='section'>
             <label for='email'>Email</label>
