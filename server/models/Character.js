@@ -1,7 +1,7 @@
 const {Schema, model} = require('mongoose');
 
 const characterSchema = new Schema({
-    name: {
+    characterName: {
         type: String,
         required: true,
         trim: true,
@@ -12,7 +12,7 @@ const characterSchema = new Schema({
         required: true,
         trim: true,
     },
-    class: {
+    characterClass: {
         type: String,
         required: true,
         trim: true,
