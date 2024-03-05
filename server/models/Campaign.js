@@ -24,7 +24,11 @@ const campaignSchema = new Schema ({
     campaignImage: {
         type: String,
         required: false,
-    }
+    },
+    users: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 })
 
 const Campaign = model('Campaign', campaignSchema);
