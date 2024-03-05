@@ -1,24 +1,24 @@
 import React from 'react';
+import 'bulma/css/bulma.min.css';
 
 function Signup() {
 
   return (
-    <div>
-      <div>
+    <div className='content'>
+      <div className='section'>
         <form>
-            <div>
+            <div className='section'>
                 <label for='name'>Name</label>
-                <input type='name' placeholder='Enter Name'/>
-            </div>
-            <div>
+                <input className='input' type='name' placeholder='Enter Name'/>
+
                 <label for='email'>Email</label>
-                <input type='email' placeholder='Enter Email'/>
-            </div>
-            <div>
+                <input className='input' type='email' placeholder='Enter Email'/>
+
                 <label for='password'>Password</label>
-                <input type='password' placeholder='Enter Password'/>
+                <input className='input' type='password' placeholder='Enter Password'/>
+                
+                <button class="button submitButton">Login</button>
             </div>
-            <button class="submitButton">Login</button>
         </form>
       </div>
     </div>

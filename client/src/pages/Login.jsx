@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bulma/css/bulma.min.css';
 
 function Login() {
 
@@ -13,7 +14,7 @@ function Login() {
             <label for='password'>Password</label>
             <input className='input' type='password' placeholder='Enter Password' />
 
-            <button className='button'>Login</button>
+            <button className='button submitbutton'>Login</button>
           </div>
         </form>
       </div>

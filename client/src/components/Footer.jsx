@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer className='footer'>
       <div className='content has-text-centered'>
-      <p>I'm a footer</p>
+      <p className='subtitle'>I'm a footer</p>
       </div>
     </footer>
   );

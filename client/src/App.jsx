@@ -7,7 +7,6 @@ import PlayerPage from './pages/PlayerPage';
 import TableTalk from './pages/TableTalk';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-
 import 'bulma/css/bulma.min.css';
 
 function App() {
