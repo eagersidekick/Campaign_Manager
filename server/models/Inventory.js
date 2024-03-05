@@ -5,8 +5,8 @@ const inventorySchema = new Schema ({
     itemName: {
         type: String,
         required: 'Your item needs a name!',
-        minlength: 1,
-        maxlength: 200,
+        minLength: 1,
+        maxLength: 200,
         trim: true,
     },
     itemOwner: {

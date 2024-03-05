@@ -7,7 +7,7 @@ const characterSchema = new Schema({
         trim: true,
         maxLength: 20, 
     },
-    race: {
+    characterRace: {
         type: String,
         required: true,
         trim: true,
@@ -17,7 +17,7 @@ const characterSchema = new Schema({
         required: true,
         trim: true,
     },
-    background: {
+    characterBackground: {
         type: String,
         required: true,
         trim: true

@@ -16,6 +16,7 @@ const resolvers = {
         character: async (parent, { characterId }) => {
             return Character.findOne({ _id: characterId });
         },
+
     },
 
     Mutation: {
@@ -33,12 +34,16 @@ const resolvers = {
 
             const validPass = await user.isCorrectPassword(password);
 
+            if (!validPass) {
+                throw AuthenticationError;
+            }
+
             const token = signToken(user);
 
             return { token, user };
         },
-        addCharacter: async (parent, { characterName, race, characterClass, background, username}) => {
-            const character = await Character.create({ characterName, race, characterClass, background});
+        addCharacter: async (parent, { characterName, characterRace, characterClass, characterBackground, username}) => {
+            const character = await Character.create({ characterName, characterRace, characterClass, characterBackground});
 
             await User.findOneAndUpdate(
                 { username: username},
@@ -48,9 +53,10 @@ const resolvers = {
 
             return character;
         },
-        removeCharacter: async (parent, { characterId }) {
+        removeCharacter: async (parent, { characterId }) => {
             return Thought.findOneAndDelete({ _id: thoughtId });
         },
+
     },
 };
 
