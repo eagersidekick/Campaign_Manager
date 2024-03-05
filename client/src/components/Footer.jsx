@@ -1,9 +1,13 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
+import 'bulma/css/bulma.min.css';
 
 function Footer() {
   return (
-    <footer>
+    <footer className='footer'>
+      <div className='content has-text-centered'>
       <p>I'm a footer</p>
+      </div>
     </footer>
   );
 }
