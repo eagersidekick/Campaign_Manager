@@ -3,7 +3,7 @@ const {signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        user: async () => {
+        users: async () => {
             return User.find().populate('characters');
         },
         user: async (parent, { username }) => {
@@ -16,7 +16,12 @@ const resolvers = {
         character: async (parent, { characterId }) => {
             return Character.findOne({ _id: characterId });
         },
-
+        characterInventory: async (parent, {characterId}) => {
+            return Inventory.findOne({ characterId }).populate('inventory');
+        },
+        campaigns: async () => {
+            return Campaign.find().populate('campaigns')
+        }
     },
 
     Mutation: {
@@ -54,9 +59,19 @@ const resolvers = {
             return character;
         },
         removeCharacter: async (parent, { characterId }) => {
-            return Thought.findOneAndDelete({ _id: thoughtId });
+            return Thought.findOneAndDelete({ _id: characterId });
         },
+        addCampaign: async (parent, { campaignName, campaignCreator, createdAt, username}) => {
+            const campaign = await Campaign.create({ campaignName, campaignCreator, createdAt});
 
+            await User.findOneAndUpdate(
+                {username: username},
+                { $addToSet: {campaigns: campaign._id}},
+                { new: true, runValidators: true}
+            )
+
+            return campaign;
+        },
     },
 };
 

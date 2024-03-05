@@ -40,6 +40,8 @@ const typeDefs = `
     user(username: String!): User
     characters(username: String): [Character]
     character(characterId: ID!): Character
+    characterInventory: [Inventory]
+    campaigns: [Campaign]
     me: User
   }
 
@@ -48,6 +50,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addCharacter(characterBackground: String!): Character
     removeCharacter(characterId: ID!): Character
+    addCampaign(campaignId: ID!, campaignName: String!): Campaign
   }
 `;
 
