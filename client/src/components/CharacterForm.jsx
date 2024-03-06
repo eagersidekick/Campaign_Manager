@@ -48,7 +48,7 @@ function CharacterForm() {
   };
 
   return (
-    <div>
+    <div className='column'>
       <p className='subtitle'>Create a new character!</p>
       <form onSubmit={handleSubmit} className='has-text-left'>
         <label>

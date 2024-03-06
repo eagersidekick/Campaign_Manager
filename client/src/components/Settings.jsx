@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 import 'bulma/css/bulma.min.css';
+import { Link } from 'react-router-dom';
 
 export default function Settings() {
     return (
@@ -16,6 +17,9 @@ export default function Settings() {
                     <p className='list-item'>First NPC</p>
                     <p className='list-item'>Other NPC</p>
                 </div>
+                <Link className='button'>
+                New Character
+                </Link>
             </div>
         </div>
     );
