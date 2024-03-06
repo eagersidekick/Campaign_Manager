@@ -1,3 +1,4 @@
+import CharacterForm from '../components/CharacterForm';
 import Settings from '../components/Settings';
 
 function PlayerPage() {
@@ -7,11 +8,17 @@ function PlayerPage() {
       <div className="columns">
         <div className='padding column is-one-quarter'>
         <Settings />
-        </div>
         <div className="column is-three-quarters silver-text">
-        <h1 className='silver-text'>Player Dashboard</h1>
-          <p className='subtitle silver-text'>Manage your characters and join campaigns.</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quam vero fugit necessitatibus eos accusantium saepe voluptas ut, est voluptatibus eveniet modi quaerat dicta optio, tenetur quibusdam aliquam amet aperiam?</p>
+          <p className='silver-text'>Player Dashboard</p>
+          <div className='columns'>
+            <div className='column'>
+              <p className='subtitle silver-text'>Your Current Characters Here:</p>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis minus voluptates illo et ipsa reprehenderit cumque dolore nesciunt delectus suscipit expedita aliquam, illum consectetur repudiandae laboriosam. Nulla cum tempora sit.</p>
+            </div>
+            <div className='column'>
+              <CharacterForm />
+            </div>
+          </div>
         </div>
       </div>
     </div>
