@@ -20,7 +20,7 @@
     color: 	#fff;
 }
 
-.tile {
+/* .tile {
     margin-left: 20px;
     display: flex;
     opacity: 90%;
@@ -28,7 +28,7 @@
 }
 .padding {
     padding-left: 30px;
-}
+} */
 .navbar-brand {
     font-size: larger;
 }
