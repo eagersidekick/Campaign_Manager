@@ -13,7 +13,7 @@ import './App.css';
 
 function App() {
   return (
-    <div id="app-container" className='App'>
+    <div className='App silver-text'>
       <BrowserRouter>
         <Header />
         <Routes>

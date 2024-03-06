@@ -22,6 +22,5 @@ export default function Settings() {
                 New Character
                 </Link>
             </div>
-        </div>
     );
 }

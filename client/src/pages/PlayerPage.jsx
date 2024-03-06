@@ -22,6 +22,7 @@ function PlayerPage() {
         </div>
       </div>
     </div>
+    </div>
   );
 }
 
