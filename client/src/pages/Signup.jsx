@@ -90,7 +90,7 @@ const SignupForm = () => {
               className="input"
             />
             <Form.Control.Feedback type="invalid" className="help is-danger">
-              Username is required!
+            <ion-icon name="alert-circle-outline"></ion-icon> Username is required!
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -106,7 +106,7 @@ const SignupForm = () => {
               className="input"
             />
             <Form.Control.Feedback type="invalid" className="help is-danger">
-              Email is required!
+            <ion-icon name="alert-circle-outline"></ion-icon> Email is required!
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -122,7 +122,7 @@ const SignupForm = () => {
               className="input"
             />
             <Form.Control.Feedback type="invalid" className="help is-danger">
-              Password is required!
+            <ion-icon name="alert-circle-outline"></ion-icon> Password is required!
             </Form.Control.Feedback>
           </Form.Group>
           <Button
