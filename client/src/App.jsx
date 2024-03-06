@@ -8,10 +8,12 @@ import TableTalk from './pages/TableTalk';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import 'bulma/css/bulma.min.css';
+import './App.css';
+
 
 function App() {
   return (
-    <div className='App'>
+    <div id="app-container" className='App'>
       <BrowserRouter>
         <Header />
         <Routes>

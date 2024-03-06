@@ -1,3 +1,34 @@
+#app-container {
+    margin: 0;
+    padding: 0;
+    background-image: url('./assets/campaign-manager.gif');
+    height: 100vh;
+    /* width: 100vh; */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#header {
+    background-color: transparent;
+}
+#footer {
+    background-color: transparent;
+}
+.silver-text {
+    color: 	#fff;
+}
+#welcome-text {
+    color: 	#fff;
+}
+
+.tile {
+    margin-left: 20px;
+    display: flex;
+    opacity: 90%;
+    
+}
+.padding {
+    padding-left: 30px;
+}
 .navbar-brand {
     font-size: larger;
 }
