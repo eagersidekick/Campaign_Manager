@@ -5,8 +5,8 @@ const campaignSchema = new Schema ({
     campaignName: {
         type: String,
         required: 'Your campaign needs a name!',
-        minlength: 1,
-        maxlength: 200,
+        minLength: 1,
+        maxLength: 200,
         trim: true,
     },
     campaignCreator: {
