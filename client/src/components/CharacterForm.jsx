@@ -48,51 +48,58 @@ function CharacterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input
-          type="text"
-          name="name"
-          value={character.name}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Race:
-        <input
-          type="text"
-          name="race"
-          value={character.race}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Class:
-        <input
-          type="text"
-          name="class"
-          value={character.class}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Background:
-        <textarea
+    <div>
+      <p className='subtitle'>Create a new character!</p>
+      <form onSubmit={handleSubmit} className='has-text-left'>
+        <label>
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={character.name}
+            onChange={handleChange}
+            required
+            className='input'
+          />
+        </label>
+        <label>
+          Race:
+          <input
+            type="text"
+            name="race"
+            value={character.race}
+            onChange={handleChange}
+            required
+            className='input'
+          />
+        </label>
+        <label>
+          Class:
+          <input
+            type="text"
+            name="class"
+            value={character.class}
+            onChange={handleChange}
+            required
+            className='input'
+          />
+        </label>
+        <label>
+          Background:
+          <textarea
             name="background"
             value={character.background}
             onChange={handleChange}
             required
-            />
-      </label>
-      <button type="submit" disabled={submitting}>
-        Create Character
-      </button>
-      {message && <p>{message}</p>}
-    </form>
+            className='textarea'
+          />
+        </label>
+        <button type="submit" disabled={submitting} className='button'>
+          Create Character
+        </button>
+        {message && <p>{message}</p>}
+      </form>
+    </div>
   );
 }
 
