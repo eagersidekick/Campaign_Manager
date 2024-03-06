@@ -23,7 +23,7 @@ function PlayerPage() {
       </div>
     </div>
     </div>
-  );
+    );
 }
 
 export default PlayerPage;
