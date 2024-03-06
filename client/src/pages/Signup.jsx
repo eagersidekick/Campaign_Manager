@@ -12,6 +12,7 @@ const SignupForm = () => {
     email: "",
     password: "",
   });
+  console.log(userFormData);
   // set state for form validation
   const [validated] = useState(false);
   // using the apollo hook  useMutation pass the
