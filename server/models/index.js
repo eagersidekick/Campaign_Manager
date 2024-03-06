@@ -1,6 +1,6 @@
-const Users = require('./Users');
-const Characters = require('./Character');
+const User = require('./Users');
+const Character = require('./Character');
 const Campaign = require('./Campaign');
 const Inventory = require('./Inventory');
 
-module.exports = { Users, Characters, Campaign, Inventory};
+module.exports = { User, Character, Campaign, Inventory};
