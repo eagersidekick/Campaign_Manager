@@ -8,7 +8,6 @@ export default function Settings() {
         <div className="column is-one-fourth">
             <div className='section silver-text'>
                 <p className="subtitle silver-text">Settings Bar</p>
-
                 {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea optio necessitatibus adipisci, eligendi magnam alias sequi possimus quas iusto, placeat natus quam obcaecati, repudiandae suscipit ipsa soluta deleniti nostrum eos!</p> */}
                 <p className='list-item'>Player One</p>
                 <p className='list-item'>Player Two</p>
@@ -17,6 +16,7 @@ export default function Settings() {
                 <p className='list-item'>First NPC</p>
                 <p className='list-item'>Other NPC</p>
             </div>
+            {/* Have this show up for DM */}
             <Link className='button'>
                 New Character
             </Link>
