@@ -39,7 +39,8 @@ const SignupForm = () => {
     }
 
     if (error) {
-      throw new Error("something went wrong!");
+      console.log("something went wrong!");
+      console.log(error);
     }
 
     // use try/catch instead of promises to handle errors
