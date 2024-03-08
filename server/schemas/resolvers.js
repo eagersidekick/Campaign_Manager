@@ -1,4 +1,5 @@
 const { User, Character, Inventory, Campaign} = require('../models');
+const { findById } = require('../models/Character');
 const {signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -80,14 +81,19 @@ const resolvers = {
             return campaign;
         },
         addCharacterInventory: async (parent, { characterId, itemName }) => {
-            const inventory = await Inventory.create({ characterId, itemName});
-            console.log(inventory, updateCharacter )
-            var updateCharacter = await Character.findOneAndUpdate(
+            const inventory = await Inventory.create({itemName});
+ 
+            const character = await Character.findById(characterId)
+            character.inventory.push(inventory);
+            character.save();
+
+            await Character.findOneAndUpdate(
+                // { $push: {inventory: inventory}},
                 { characterId: characterId},
                 { $addToSet: { inventory: inventory._id}},
                 { new: true, runValidators: true}
             )
-
+            await inventory.save();
             return inventory;
         },
         removeUser: async (parent, { userId }) => {
