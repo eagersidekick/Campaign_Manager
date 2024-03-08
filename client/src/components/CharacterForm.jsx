@@ -22,9 +22,6 @@ function CharacterForm( {onCharacterCreated}) {
     characterBackground: '',
   });
   const [addCharacter, { loading, error }] = useMutation(ADD_CHARACTER_MUTATION);
-  if (error) {
-    console.log('Error submitting', error.message);
-  }
 
   const handleChange = (e) => {
     setCharacterDetails({

@@ -1,6 +1,5 @@
 import Settings from '../components/Settings';
-import CharacterForm from '../components/CharacterForm';
-
+import CampaignForm from '../components/CampaignForm';
 
 function Campaign() {
 
@@ -9,13 +8,13 @@ function Campaign() {
       <h1 className="title">Campaign Details</h1>
       <p className="subtitle is-6 pt-1">Viewing campaign: {}</p>
       <div className="columns">
-        <Settings />
+        {/* <Settings /> */}
+        {/* settings bar for campaign is a WIP atm */}
         <div className="column">
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum fugiat reiciendis unde hic non, eveniet nulla porro quo, corrupti tempora aperiam aspernatur tenetur, dolorum voluptatibus ea ipsa aliquam. Minima, non.</p>
         </div>
-        {/* <div className='column'>
-         Campaign creation form here
-        </div> */}
+        <div className='column'>
+         <CampaignForm /> </div>
       </div>
     </div>
   );
