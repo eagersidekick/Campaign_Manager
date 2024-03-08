@@ -1,105 +1,97 @@
-import { useState } from 'react';
 
-// placeholder for character creation API call
-const createCharacter = async (characterData) => {
-  // simulates a network request/response
-  console.log('Submitting character data:', characterData);
-  return new Promise((resolve) => {
-    setTimeout(() => resolve({ success: true, message: "Character created successfully!" }), 1000);
-  });
-};
+import { useState } from 'react';
+import { useMutation, gql } from '@apollo/client';
+
+const ADD_CHARACTER_MUTATION = gql`
+  mutation AddCharacter($characterBackground: String!, $characterName: String!, $characterRace: String!, $characterClass: String!) {
+    addCharacter(characterBackground: $characterBackground, characterName: $characterName, characterRace: $characterRace, characterClass: $characterClass) {
+      _id
+      characterName
+      characterBackground
+      characterRace
+      characterClass
+    }
+  }
+`;
 
 function CharacterForm() {
-  const [character, setCharacter] = useState({
-    name: '',
-    race: '',
-    class: '',
-    background: '',
+  const [characterDetails, setCharacterDetails] = useState({
+    characterName: '',
+    characterRace: '',
+    characterClass: '',
+    characterBackground: '',
   });
-  const [submitting, setSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
+  const [addCharacter, { loading, error }] = useMutation(ADD_CHARACTER_MUTATION);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCharacter((prevCharacter) => ({
-      ...prevCharacter,
-      [name]: value,
-    }));
+    setCharacterDetails({
+      ...characterDetails,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
-    setMessage('');
-
     try {
-      const response = await createCharacter(character);
-      if (response.success) {
-        setMessage(response.message);
-        setCharacter({ name: '', race: '', class: '', background: '' });
-      } else {
-        setMessage("Failed to create character.");
-      }
-    } catch (error) {
-      setMessage('An error occurred. Please try again.');
-    } finally {
-      setSubmitting(false);
+      await addCharacter({
+        variables: {
+          characterName: characterDetails.characterName,
+          characterRace: characterDetails.characterRace,
+          characterClass: characterDetails.characterClass,
+          characterBackground: characterDetails.characterBackground,
+        },
+      });
+      alert('Character created successfully!');
+      setCharacterDetails({ characterName: '', characterRace: '', characterClass: '', characterBackground: '' }); // resets form 
+    } catch (err) {
+      alert(`Failed to create character: ${err.message}`);
     }
   };
 
   return (
-    <div className='column'>
-      <p className='subtitle silver-text'>Create a new character!</p>
-      <form onSubmit={handleSubmit} className='has-text-left silver-text'>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={character.name}
-            onChange={handleChange}
-            required
-            className='input'
-          />
-        </label>
-        <label>
-          Race:
-          <input
-            type="text"
-            name="race"
-            value={character.race}
-            onChange={handleChange}
-            required
-            className='input'
-          />
-        </label>
-        <label>
-          Class:
-          <input
-            type="text"
-            name="class"
-            value={character.class}
-            onChange={handleChange}
-            required
-            className='input'
-          />
-        </label>
-        <label>
-          Background:
-          <textarea
-            name="background"
-            value={character.background}
-            onChange={handleChange}
-            required
-            className='textarea'
-          />
-        </label>
-        <button type="submit" disabled={submitting} className='button'>
-          Create Character
-        </button>
-        {message && <p>{message}</p>}
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Character Name:
+        <input
+          type="text"
+          name="characterName"
+          value={characterDetails.characterName}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <label>
+        Race:
+        <input
+          type="text"
+          name="characterRace"
+          value={characterDetails.characterRace}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <label>
+        Class:
+        <input
+          type="text"
+          name="characterClass"
+          value={characterDetails.characterClass}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <label>
+        Background:
+        <textarea
+          name="characterBackground"
+          value={characterDetails.characterBackground}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <button type="submit" disabled={loading}>Create Character</button>
+      {error && <p>An error occurred: {error.message}</p>}
+    </form>
   );
 }
 
