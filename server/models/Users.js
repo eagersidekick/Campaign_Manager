@@ -18,18 +18,6 @@ const userSchema = new Schema({
         required: true,
         minLength: 5,
     },
-    inventory: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Inventory',
-        }
-    ],
-    characters: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Character',
-        }
-    ],
     campaign: [
         {
             type: Schema.Types.ObjectId,
