@@ -11,9 +11,10 @@ import 'bulma/css/bulma.min.css';
 import './App.css';
 import { setContext } from '@apollo/client/link/context';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import CharactersPage from './pages/CharactersPage';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -44,6 +45,8 @@ function App() {
           <Route path="/campaign" element={<Campaign />} />
           <Route path="/player" element={<PlayerPage />} />
           <Route path="/tabletalk" element={<TableTalk />} />
+          <Route path="/test" element={<CharactersPage />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>
