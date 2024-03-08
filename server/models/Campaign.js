@@ -9,13 +9,10 @@ const campaignSchema = new Schema ({
         maxLength: 200,
         trim: true,
     },
-    campaignCreator: {
+    characters: [{
         type: Schema.Types.ObjectId,
-        ref: 'User',
-        type: String,
-        required: true,
-        trim: true,
-    },
+        ref: 'Character',
+    }],
     createdAt: {
         type: Date,
         default: Date.now,

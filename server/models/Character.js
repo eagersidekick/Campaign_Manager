@@ -21,7 +21,13 @@ const characterSchema = new Schema({
         type: String,
         required: true,
         trim: true
-    }
+    },
+    inventory: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Inventory',
+        }
+    ],
 });
 
 const Character = model('Character', characterSchema);

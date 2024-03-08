@@ -9,12 +9,6 @@ const inventorySchema = new Schema ({
         maxLength: 200,
         trim: true,
     },
-    itemOwner: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-        trim: true,
-    },
     collectedOn: {
         type: Date,
         default: Date.now,
