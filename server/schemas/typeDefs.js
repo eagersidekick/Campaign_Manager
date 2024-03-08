@@ -4,7 +4,6 @@ const typeDefs = `
     username: String
     email: String
     password: String
-    characters: [Character]!
     campaigns: [Campaign]!
   }
 
@@ -22,7 +21,6 @@ const typeDefs = `
   type Inventory {
     _id: ID
     itemName: String
-    itemOwner: String
     collectedOn: String
   }
 
@@ -31,6 +29,7 @@ const typeDefs = `
     campaignName: String
     campaignCreator: String
     createdAt: String
+    characters: [Character]!
   }
 
   type Auth {
@@ -52,9 +51,18 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addCharacter(characterBackground: String!, characterName: String!, characterRace: String!, characterClass: String!): Character
+    addCharacter(
+      campaignId: ID!,
+      characterBackground: String!,
+      characterName: String!,
+      characterRace: String!, 
+      characterClass: String!): Character
     removeCharacter(characterId: ID!): Character
-    addCampaign(campaignId: ID!, campaignName: String!): Campaign
+    addCampaign(campaignName: String!): Campaign
+    addCharacterInventory(characterId: ID!, itemName: String!): Inventory
+    removeUser(userId: ID!): User
+    removeCampaign(campaignId: ID!): Campaign
+    removeItem(itemId: ID!): Inventory
   }
 `;
 

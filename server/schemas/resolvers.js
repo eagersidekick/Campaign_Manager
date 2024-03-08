@@ -11,7 +11,7 @@ const resolvers = {
         },
         characters: async (parent, { username }) => {
             const params = username ? { username } : {};
-            return Character.find(params);
+            return Character.find(params).populate('inventory');
         },
         character: async (parent, { characterId }) => {
             return Character.findOne({ _id: characterId });
@@ -20,7 +20,14 @@ const resolvers = {
             return Inventory.findOne({ characterId }).populate('inventory');
         },
         campaigns: async () => {
-            return Campaign.find().populate('campaigns')
+            try { 
+                const campaigns = await Campaign.find().populate('characters');
+                console.log(campaigns);
+                return campaigns;
+            } catch (err) {
+                console.log("Error fetching campaigns:", err);
+                throw err;
+            }
         }
     },
 
@@ -48,19 +55,28 @@ const resolvers = {
 
             return { token, user };
         },
-        addCharacter: async (parent, { characterName, characterRace, characterClass, characterBackground, username}) => {
+        addCharacter: async (parent, { characterName, characterRace, characterClass, characterBackground, campaignId}) => {
+            
             const character = await Character.create({ characterName, characterRace, characterClass, characterBackground});
+            
+            const campaign = await Campaign.findById(campaignId);
+            
+            // if (!campaign) {
+            //     throw new Error('Campaign not found')
+            // }
+
+            campaign.characters.push(character)
 
             await User.findOneAndUpdate(
-                { username: username},
+                { _id: campaignId},
                 { $addToSet: {characters: character._id}},
                 { new: true, runValidators: true}
             )
-
+            await campaign.save();
             return character;
         },
         removeCharacter: async (parent, { characterId }) => {
-            return Thought.findOneAndDelete({ _id: characterId });
+            return Character.findOneAndDelete({ _id: characterId });
         },
         addCampaign: async (parent, { campaignName, campaignCreator, createdAt, username}) => {
             const campaign = await Campaign.create({ campaignName, campaignCreator, createdAt});
@@ -73,6 +89,26 @@ const resolvers = {
 
             return campaign;
         },
+        addCharacterInventory: async (parent, { characterId, itemName }) => {
+            const inventory = await Inventory.create({ characterId, itemName});
+            console.log(inventory, updateCharacter )
+            var updateCharacter = await Character.findOneAndUpdate(
+                { characterId: characterId},
+                { $addToSet: { inventory: inventory._id}},
+                { new: true, runValidators: true}
+            )
+
+            return inventory;
+        },
+        removeUser: async (parent, { userId }) => {
+            return User.findOneAndDelete({ _id: userId });
+        },
+        removeCampaign: async (parent, { campaignId }) => {
+            return Campaign.findOneAndDelete({ _id: campaignId});
+        },
+        removeItem: async (parent, { itemId }) => {
+            return Inventory.findOneAndDelete({ _id: itemId})
+        }
     },
 };
 
