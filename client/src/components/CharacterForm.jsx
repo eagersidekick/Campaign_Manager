@@ -14,7 +14,7 @@ const ADD_CHARACTER_MUTATION = gql`
   }
 `;
 
-function CharacterForm() {
+function CharacterForm( {onCharacterCreated}) {
   const [characterDetails, setCharacterDetails] = useState({
     characterName: '',
     characterRace: '',
@@ -22,6 +22,9 @@ function CharacterForm() {
     characterBackground: '',
   });
   const [addCharacter, { loading, error }] = useMutation(ADD_CHARACTER_MUTATION);
+  if (error) {
+    console.log('Error submitting', error.message);
+  }
 
   const handleChange = (e) => {
     setCharacterDetails({
@@ -33,7 +36,7 @@ function CharacterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addCharacter({
+        const {data} = await addCharacter({
         variables: {
           characterName: characterDetails.characterName,
           characterRace: characterDetails.characterRace,
@@ -42,6 +45,7 @@ function CharacterForm() {
         },
       });
       alert('Character created successfully!');
+      onCharacterCreated(data.addCharacter); 
       setCharacterDetails({ characterName: '', characterRace: '', characterClass: '', characterBackground: '' }); // resets form 
     } catch (err) {
       alert(`Failed to create character: ${err.message}`);
