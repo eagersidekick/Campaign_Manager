@@ -22,9 +22,7 @@ mutation RemoveCampaign($campaignId: ID!) {
     campaignName
   }
 }
-`import CampaignInfo from '../components/CampaignInfo';
-import 'bulma/css/bulma.min.css';
-import '/src/App.css'
+`;
 
 
 function Campaign() {
