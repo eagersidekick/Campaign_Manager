@@ -96,6 +96,20 @@ const resolvers = {
             await inventory.save();
             return inventory;
         },
+        addCharacterToCampaign: async (_, { characterId, campaignId }) => {
+            const campaign = await Campaign.findById(campaignId);
+            if (!campaign) {
+              throw new Error('Campaign not found');
+            }
+      
+            const updatedCharacter = await Character.findByIdAndUpdate(characterId, { $set: { campaign: campaignId } }, { new: true });
+      
+            if (!updatedCharacter) {
+              throw new Error('Character not found');
+            }
+      
+            return updatedCharacter;
+          },
         removeUser: async (parent, { userId }) => {
             return User.findOneAndDelete({ _id: userId });
         },

@@ -1,63 +1,83 @@
 import { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation, gql, useQuery } from '@apollo/client';
 
-const ADD_CAMPAIGN_MUTATION = gql`
-  mutation AddCampaign($campaignId: ID!, $campaignName: String!) {
-    addCampaign(campaignId: $campaignId, campaignName: $campaignName) {
+const ADD_CAMPAIGN = gql`
+  mutation AddCampaign($campaignName: String!) {
+    addCampaign(campaignName: $campaignName) {
       _id
       campaignName
-      campaignCreator
+      characters {
+        _id
+        characterName
+        inventory {
+          _id
+          itemName
+        }
+      }
     }
   }
 `;
 
-function CampaignForm() {
-  const [campaignDetails, setCampaignDetails] = useState({
-    name: '',
-  });
-  const [addCampaign, { loading, error, data }] = useMutation(ADD_CAMPAIGN_MUTATION);
+// const GET_CAMPAIGNS = gql`
+// query FetchCamp {
+//     campaigns {
+//       _id
+//       campaignName
+//     }
+// }
+// `;
+// const { data, loading, error } = useQuery(GET_CAMPAIGNS);
 
-  const handleChange = (e) => {
-    setCampaignDetails({
-      ...campaignDetails,
-      [e.target.name]: e.target.value,
-    });
-  };
+function CampaignForm() {
+  const [campaignName, setCampaignName] = useState('');
+  const [message, setMessage] = useState(''); // state to hold the success or error message
+  const [createdCampaignName, setCreatedCampaignName] = useState(''); // state to hold the name of the created campaign
+
+  const [addCampaign, { loading, error }] = useMutation(ADD_CAMPAIGN, {
+    variables: { campaignName },
+    onCompleted: (data) => {
+      setMessage('Campaign created successfullyasdasd!');
+      setCreatedCampaignName(data.addCampaign.campaignName); // saves the name of the created campaign
+      setCampaignName(''); // clears the form input
+    },
+    onError: (error) => {
+      setMessage(`Error creating campaign: ${error.message}`);
+    },
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage(''); // clears previous messages
     try {
-      await addCampaign({
-        variables: {
-          name: campaignDetails.name,
-          creator: creatorId,
-        },
-      });
-      alert('Campaign created successfully!');
-      setCampaignDetails({ name: '', race: '', class: '', background: '' }); // resets form after success
-    } catch (err) {
-      alert(`Failed to create campaign: ${err.message}`);
+      await addCampaign();
+    } catch (error) {
+      console.log('error', error)
     }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>An error occurred: {error.message}</p>;
-
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Campaign Name:
-        <input
-          type="text"
-          name="name"
-          value={campaignDetails.name}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <button type="submit">Create Campaign</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="campaignName">Campaign Name:</label>
+          <input
+            id="campaignName"
+            type="text"
+            value={campaignName}
+            onChange={(e) => setCampaignName(e.target.value)}
+            required
+          />
+          <button type="submit" disabled={loading}>
+            {loading ? 'Creating...' : 'Create Campaign'}
+          </button>
+        </div>
+      </form>
+      {message && <p>{message}</p>} {/* displays success or error message */}
+      {createdCampaignName && <p>Campaign Added: {createdCampaignName}</p>} 
+    </div>
   );
 }
 
+
 export default CampaignForm;
+

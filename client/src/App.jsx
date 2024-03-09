@@ -12,6 +12,7 @@ import './App.css';
 import { setContext } from '@apollo/client/link/context';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import CharactersPage from './pages/CharactersPage';
+import CharacterDetails from './pages/CharacterDetails';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -46,6 +47,7 @@ function App() {
           <Route path="/player" element={<PlayerPage />} />
           <Route path="/tabletalk" element={<TableTalk />} />
           <Route path="/test" element={<CharactersPage />} />
+          <Route path="/character/:characterId" element={<CharacterDetails />} />
 
         </Routes>
         <Footer />

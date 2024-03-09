@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import 'bulma/css/bulma.min.css';
 import '/src/App.css';
 
@@ -7,7 +8,9 @@ export default function Settings({ onOpenForm, characters }) {
             <div className='section silver-text'>
                 <p className="subtitle silver-text">Settings Bar</p>
                 {characters.map((character) => (
-                    <p className='list-item' key={character._id}>{character.characterName}</p>
+                    <Link key={character._id} to={`/character/${character._id}`} className="character-link">
+                    {character.characterName}
+                  </Link>
                 ))}
             </div>
             <button className='button' onClick={onOpenForm}>New Character</button>
