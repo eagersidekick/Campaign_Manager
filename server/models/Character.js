@@ -22,6 +22,10 @@ const characterSchema = new Schema({
         required: true,
         trim: true
     },
+    campaign: {
+        type: Schema.Types.ObjectId,
+        ref: 'Campaign',
+    },
     inventory: [
         {
             type: Schema.Types.ObjectId,
