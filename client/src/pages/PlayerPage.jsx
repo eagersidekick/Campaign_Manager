@@ -11,8 +11,8 @@ function PlayerPage() {
       <p className="subtitle is-6 pt-1 silver-text">View your characters and such</p>
       <div className="columns section">
         <Settings />
-        <CharacterList />
-        {/* <CharacterForm /> */}
+        {/* <CharacterList /> */}
+        <CharacterForm />
       </div>
     </div>
   );

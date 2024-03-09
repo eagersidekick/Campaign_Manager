@@ -56,26 +56,35 @@ const resolvers = {
 
             return { token, user };
         },
-        addCharacter: async (parent, { characterName, characterRace, characterClass, characterBackground, campaignId}) => {
-            
+        addCharacter: async (parent, { characterName, characterRace, characterClass, characterBackground, username}) => {
             const character = await Character.create({ characterName, characterRace, characterClass, characterBackground});
-            
-            const campaign = await Campaign.findById(campaignId);
-            
-            // if (!campaign) {
-            //     throw new Error('Campaign not found')
-            // }
-
-            campaign.characters.push(character)
-
             await User.findOneAndUpdate(
-                { _id: campaignId},
+                { username: username},
                 { $addToSet: {characters: character._id}},
                 { new: true, runValidators: true}
             )
-            await campaign.save();
             return character;
         },
+        // addCharacter: async (parent, { characterName, characterRace, characterClass, characterBackground, campaignId}) => {
+            
+        //     const character = await Character.create({ characterName, characterRace, characterClass, characterBackground});
+            
+        //     const campaign = await Campaign.findById(campaignId);
+            
+        //     // if (!campaign) {
+        //     //     throw new Error('Campaign not found')
+        //     // }
+
+        //     campaign.characters.push(character)
+
+        //     await User.findOneAndUpdate(
+        //         { _id: campaignId},
+        //         { $addToSet: {characters: character._id}},
+        //         { new: true, runValidators: true}
+        //     )
+        //     await campaign.save();
+        //     return character;
+        // },
         removeCharacter: async (parent, { characterId }) => {
             return Character.findOneAndDelete({ _id: characterId });
         },

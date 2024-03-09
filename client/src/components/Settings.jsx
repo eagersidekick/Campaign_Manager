@@ -5,7 +5,7 @@ import '/src/App.css';
 
 export default function Settings() {
     return (
-        <div className="column is-one-fourth">
+        <div className="column is-one-fifth">
             <div className='section silver-text'>
                 <p className="subtitle silver-text">Settings Bar</p>
                 {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea optio necessitatibus adipisci, eligendi magnam alias sequi possimus quas iusto, placeat natus quam obcaecati, repudiandae suscipit ipsa soluta deleniti nostrum eos!</p> */}

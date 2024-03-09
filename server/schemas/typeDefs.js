@@ -52,7 +52,6 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addCharacter(
-      campaignId: ID!,
       characterBackground: String!,
       characterName: String!,
       characterRace: String!, 
