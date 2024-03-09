@@ -32,17 +32,43 @@ const ADD_CHARACTER_MUTATION = gql`
   }
 `;
 
+const GET_CAMPAIGNS = gql`
+query FetchCamp {
+    campaigns {
+      _id
+      campaignName
+    }
+}
+`;
+
+function CampaignSelector({ onCampaignSelected }) {
+  const { loading, data, error } = useQuery(GET_CAMPAIGNS);
+
+  if (loading) return <p>Loading campaigns...</p>;
+  if (error) return <p>Error loading campaigns: {error.message}</p>;
+
+  return (
+    <select onChange={(e) => onCampaignSelected(e.target.value)} defaultValue="">
+      <option value="" disabled>Select a campaign</option>
+      {data.campaigns.map((campaign) => (
+        <option key={campaign._id} value={campaign._id}>{campaign.campaignName}</option>
+      ))}
+    </select>
+  );
+}
+
 function PlayerPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCampaign, setSelectedCampaign] = useState(null);
+
   const { loading, data, error, refetch } = useQuery(FETCH_CHARACTERS);
   const [addCharacter] = useMutation(ADD_CHARACTER_MUTATION, {
-    onCompleted: () => refetch(), // Refetch characters after adding a new one to update the list
+    onCompleted: () => refetch(), // refetches characters after adding a new one to update the list
   });
 
-  // Toggle modal visibility
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  // Function to be called from CharacterForm on character creation
+  // function to be called from CharacterForm on character creation
   const handleAddNewCharacter = async (characterData) => {
     try {
       await addCharacter({
@@ -53,7 +79,7 @@ function PlayerPage() {
           characterBackground: characterData.characterBackground,
         },
       });
-      toggleModal(); // Close the modal upon successful creation
+      toggleModal(); // closes the modal 
     } catch (error) {
       console.error('Error adding new character:', error);
     }
