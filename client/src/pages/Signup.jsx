@@ -89,9 +89,7 @@ const SignupForm = () => {
               required
               className="input"
             />
-            <Form.Control.Feedback type="invalid" className="help is-danger">
-            <ion-icon name="alert-circle-outline"></ion-icon> Username is required!
-            </Form.Control.Feedback>
+
           </Form.Group>
 
           <Form.Group>
@@ -105,9 +103,7 @@ const SignupForm = () => {
               required
               className="input"
             />
-            <Form.Control.Feedback type="invalid" className="help is-danger">
-            <ion-icon name="alert-circle-outline"></ion-icon> Email is required!
-            </Form.Control.Feedback>
+
           </Form.Group>
 
           <Form.Group>
@@ -121,9 +117,7 @@ const SignupForm = () => {
               required
               className="input"
             />
-            <Form.Control.Feedback type="invalid" className="help is-danger">
-            <ion-icon name="alert-circle-outline"></ion-icon> Password is required!
-            </Form.Control.Feedback>
+
           </Form.Group>
           <Button
             disabled={

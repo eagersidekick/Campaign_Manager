@@ -52,58 +52,54 @@ const LoginForm = () => {
 
   return (
     <div className="content">
-    <div className="section">
-      <h1 className="title has-text-centered">Log In</h1>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit} className="section">
-        <Alert
-          dismissible
-          onClose={() => setShowAlert(false)}
-          show={showAlert}
-          variant="danger"
-        >
-          Something went wrong with your login credentials!
-        </Alert>
-        <Form.Group>
-          <Form.Label htmlFor="email" className="subtitle">Email</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Your email"
-            name="email"
-            onChange={handleInputChange}
-            value={userFormData.email}
-            required
-            className="input"
-          />
-          <Form.Control.Feedback type="invalid" className="help is-danger">
-          <ion-icon name="alert-circle-outline"></ion-icon> Email is required!
-          </Form.Control.Feedback>
-        </Form.Group>
+      <div className="section">
+        <h1 className="title has-text-centered">Log In</h1>
+        <Form noValidate validated={validated} onSubmit={handleFormSubmit} className="section">
+          <Alert
+            dismissible
+            onClose={() => setShowAlert(false)}
+            show={showAlert}
+            variant="danger"
+          >
+            Something went wrong with your login credentials!
+          </Alert>
+          <Form.Group>
+            <Form.Label htmlFor="email" className="subtitle">Email</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Your email"
+              name="email"
+              onChange={handleInputChange}
+              value={userFormData.email}
+              required
+              className="input"
+            />
 
-        <Form.Group>
-          <Form.Label htmlFor="password" className="subtitle">Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Your password"
-            name="password"
-            onChange={handleInputChange}
-            value={userFormData.password}
-            required
-            className="input"
-          />
-          <Form.Control.Feedback type="invalid" className="help is-danger">
-          <ion-icon name="alert-circle-outline"></ion-icon> Password is required!
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Button
-          disabled={!(userFormData.email && userFormData.password)}
-          type="submit"
-          variant="success"
-          className="button"
-        >
-          Submit
-        </Button>
-        {error && <div>Login failed</div>}
-      </Form>
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label htmlFor="password" className="subtitle">Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Your password"
+              name="password"
+              onChange={handleInputChange}
+              value={userFormData.password}
+              required
+              className="input"
+            />
+
+          </Form.Group>
+          <Button
+            disabled={!(userFormData.email && userFormData.password)}
+            type="submit"
+            variant="success"
+            className="button"
+          >
+            Submit
+          </Button>
+          {error && <div>Login failed</div>}
+        </Form>
       </div>
     </div>
   );
