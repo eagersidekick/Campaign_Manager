@@ -5,7 +5,7 @@ import Auth from '../utils/auth'
 
 function Header() {
   var login;
-  if(Auth.getToken() != null)
+  if(Auth.loggedIn())
   {
     login = <a className='navbar-item silver-text' href="/" onClick={() => Auth.logout()}>Logout</a>
   }
