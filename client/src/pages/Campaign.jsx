@@ -4,6 +4,18 @@ import CharacterForm from '../components/CharacterForm';
 
 function Campaign() {
 
+  // const Dashboard = () => {
+  //   const [authenticated, setauthenticated] = useState(null);
+  //   useEffect(() => {
+  //     const loggedInUser = localStorage.getItem("authenticated");
+  //     if (loggedInUser) {
+  //       setauthenticated(loggedInUser);
+  //     }
+  //   }, []);
+  
+  //   if (!authenticated) {
+  //   // Redirect
+  //   } else {
   return (
     <div className="content has-text-centered">
       <h1 className="title">Campaign Details</h1>
@@ -19,6 +31,6 @@ function Campaign() {
       </div>
     </div>
   );
-}
+};
 
 export default Campaign;

@@ -1,4 +1,4 @@
-// see SignupForm.js for comments
+// imports
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
@@ -10,9 +10,8 @@ const LoginForm = () => {
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  // using the apollo hook  useMutation pass the
-  // LOGIN_USER mutation in order to talk to graphql
-  // addUser will hold the output and error the error
+  // apollo hook useMutation to pass the
+  // LOGIN_USER mutation for graphql
 
   const [login, { error }] = useMutation(LOGIN_USER);
 
@@ -36,7 +35,7 @@ const LoginForm = () => {
         variables: { ...userFormData },
       });
 
-      // Store the token in local storage
+      // Store the token
       Auth.login(data.login.token);
       console.log(data);
     } catch (e) {
