@@ -29,7 +29,7 @@ const typeDefs = `
     campaignName: String
     campaignCreator: String
     createdAt: String
-    characters: [Character]!
+    characters: [Character]
   }
 
   type Auth {
@@ -52,13 +52,13 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addCharacter(
-      campaignId: ID!,
       characterBackground: String!,
       characterName: String!,
       characterRace: String!, 
       characterClass: String!): Character
     removeCharacter(characterId: ID!): Character
     addCampaign(campaignName: String!): Campaign
+    addCharacterToCampaign(characterId: ID!, campaignId: ID!): Character
     addCharacterInventory(characterId: ID!, itemName: String!): Inventory
     removeUser(userId: ID!): User
     removeCampaign(campaignId: ID!): Campaign

@@ -1,4 +1,5 @@
 const { User, Character, Inventory, Campaign} = require('../models');
+const { findById } = require('../models/Character');
 const {signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -56,24 +57,13 @@ const resolvers = {
 
             return { token, user };
         },
-        addCharacter: async (parent, { characterName, characterRace, characterClass, characterBackground, campaignId}) => {
-            
+        addCharacter: async (parent, { characterName, characterRace, characterClass, characterBackground, username}) => {
             const character = await Character.create({ characterName, characterRace, characterClass, characterBackground});
-            
-            const campaign = await Campaign.findById(campaignId);
-            
-            // if (!campaign) {
-            //     throw new Error('Campaign not found')
-            // }
-
-            campaign.characters.push(character)
-
             await User.findOneAndUpdate(
-                { _id: campaignId},
+                { username: username},
                 { $addToSet: {characters: character._id}},
                 { new: true, runValidators: true}
             )
-            await campaign.save();
             return character;
         },
         removeCharacter: async (parent, { characterId }) => {
@@ -91,16 +81,35 @@ const resolvers = {
             return campaign;
         },
         addCharacterInventory: async (parent, { characterId, itemName }) => {
-            const inventory = await Inventory.create({ characterId, itemName});
-            console.log(inventory, updateCharacter )
-            var updateCharacter = await Character.findOneAndUpdate(
+            const inventory = await Inventory.create({itemName});
+ 
+            const character = await Character.findById(characterId)
+            character.inventory.push(inventory);
+            character.save();
+
+            await Character.findOneAndUpdate(
+                // { $push: {inventory: inventory}},
                 { characterId: characterId},
                 { $addToSet: { inventory: inventory._id}},
                 { new: true, runValidators: true}
             )
-
+            await inventory.save();
             return inventory;
         },
+        addCharacterToCampaign: async (_, { characterId, campaignId }) => {
+            const campaign = await Campaign.findById(campaignId);
+            if (!campaign) {
+              throw new Error('Campaign not found');
+            }
+      
+            const updatedCharacter = await Character.findByIdAndUpdate(characterId, { $set: { campaign: campaignId } }, { new: true });
+      
+            if (!updatedCharacter) {
+              throw new Error('Character not found');
+            }
+      
+            return updatedCharacter;
+          },
         removeUser: async (parent, { userId }) => {
             return User.findOneAndDelete({ _id: userId });
         },
