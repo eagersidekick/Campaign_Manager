@@ -22,6 +22,7 @@ function Campaign() {
       </div>
     );
   }
+  //if user is not signed in, show this instead:
   else {
     return (
       <div className="content has-text-centered">
