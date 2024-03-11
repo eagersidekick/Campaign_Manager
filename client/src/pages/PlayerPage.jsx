@@ -9,37 +9,6 @@ import 'bulma/css/bulma.min.css';
 import '/src/App.css'
 import Auth from '../utils/auth'
 
-function PlayerPage() {
-  if (Auth.loggedIn()) {
-    return (
-      <div className='content has-text-centered'>
-        <p className='title silver-text'>Player Dashboard</p>
-        <div className="columns">
-          <Settings />
-          <div className="column silver-text">
-            <p className='subtitle silver-text'>Your Current Characters Here:</p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis minus voluptates illo et ipsa reprehenderit cumque dolore nesciunt delectus suscipit expedita aliquam, illum consectetur repudiandae laboriosam. Nulla cum tempora sit.</p>
-          </div>
-          <CharacterForm />
-        </div>
-      </div>
-    );
-  }
-  else {
-    return (
-      <div className='content has-text-centered'>
-        <p className='title silver-text'>Player Dashboard</p>
-        <div className="columns">
-          <Settings />
-          <div className="column silver-text">
-            <p>Please login to view page.</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-import '/src/App.css';
-
 const FETCH_CHARACTERS = gql`
   query FetchCharacters {
     characters {
@@ -74,62 +43,66 @@ query FetchCamp {
 `;
 
 function CampaignSelector({ onCampaignSelected }) {
-  const { loading, data, error } = useQuery(GET_CAMPAIGNS);
+  if (Auth.loggedIn()) {
+    const { loading, data, error } = useQuery(GET_CAMPAIGNS);
 
-  if (loading) return <p>Loading campaigns...</p>;
-  if (error) return <p>Error loading campaigns: {error.message}</p>;
+    if (loading) return <p>Loading campaigns...</p>;
+    if (error) return <p>Error loading campaigns: {error.message}</p>;
 
-  return (
-    <select onChange={(e) => onCampaignSelected(e.target.value)} defaultValue="">
-      <option value="" disabled>Select a campaign</option>
-      {data.campaigns.map((campaign) => (
-        <option key={campaign._id} value={campaign._id}>{campaign.campaignName}</option>
-      ))}
-    </select>
-  );
+    return (
+      <select onChange={(e) => onCampaignSelected(e.target.value)} defaultValue="">
+        <option value="" disabled>Select a campaign</option>
+        {data.campaigns.map((campaign) => (
+          <option key={campaign._id} value={campaign._id}>{campaign.campaignName}</option>
+        ))}
+      </select>
+    );
+  }
 }
 
 function PlayerPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCampaign, setSelectedCampaign] = useState(null);
+  if (Auth.loggedIn()) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedCampaign, setSelectedCampaign] = useState(null);
 
-  const { loading, data, error, refetch } = useQuery(FETCH_CHARACTERS);
-  const [addCharacter] = useMutation(ADD_CHARACTER_MUTATION, {
-    onCompleted: () => refetch(), // refetches characters after adding a new one to update the list
-  });
+    const { loading, data, error, refetch } = useQuery(FETCH_CHARACTERS);
+    const [addCharacter] = useMutation(ADD_CHARACTER_MUTATION, {
+      onCompleted: () => refetch(), // refetches characters after adding a new one to update the list
+    });
 
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
+    const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  // function to be called from CharacterForm on character creation
-  const handleAddNewCharacter = async (characterData) => {
-    try {
-      await addCharacter({
-        variables: {
-          characterName: characterData.characterName,
-          characterRace: characterData.characterRace,
-          characterClass: characterData.characterClass,
-          characterBackground: characterData.characterBackground,
-        },
-      });
-      toggleModal(); // closes the modal 
-    } catch (error) {
-      console.error('Error adding new character:', error);
-    }
-  };
+    // function to be called from CharacterForm on character creation
+    const handleAddNewCharacter = async (characterData) => {
+      try {
+        await addCharacter({
+          variables: {
+            characterName: characterData.characterName,
+            characterRace: characterData.characterRace,
+            characterClass: characterData.characterClass,
+            characterBackground: characterData.characterBackground,
+          },
+        });
+        toggleModal(); // closes the modal 
+      } catch (error) {
+        console.error('Error adding new character:', error);
+      }
+    };
 
-  if (loading) return <p>Loading characters...</p>;
-  if (error) return <p>Error fetching characters: {error.message}</p>;
+    if (loading) return <p>Loading characters...</p>;
+    if (error) return <p>Error fetching characters: {error.message}</p>;
 
-  return (
-    <div className='content has-text-centered'>
-      <Settings onOpenForm={toggleModal} characters={data?.characters || []} />
-      {isModalOpen && (
-        <Modal onClose={toggleModal}>
-          <CharacterForm onCharacterCreated={handleAddNewCharacter} />
-        </Modal>
-      )}
-    </div>
-  );
+    return (
+      <div className='content has-text-centered'>
+        <Settings onOpenForm={toggleModal} characters={data?.characters || []} />
+        {isModalOpen && (
+          <Modal onClose={toggleModal}>
+            <CharacterForm onCharacterCreated={handleAddNewCharacter} />
+          </Modal>
+        )}
+      </div>
+    );
+  }
 }
 
 export default PlayerPage;
