@@ -61,7 +61,7 @@ function CampaignSelector({ onCampaignSelected }) {
 }
 
 function PlayerPage() {
-  if (Auth.loggedIn()) {
+  
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCampaign, setSelectedCampaign] = useState(null);
 
@@ -88,6 +88,9 @@ function PlayerPage() {
         console.error('Error adding new character:', error);
       }
     };
+    if (!Auth.loggedIn()) {
+      return <p>User is not logged in. </p>;
+    }
 
     if (loading) return <p>Loading characters...</p>;
     if (error) return <p>Error fetching characters: {error.message}</p>;
@@ -103,6 +106,6 @@ function PlayerPage() {
       </div>
     );
   }
-}
+
 
 export default PlayerPage;
