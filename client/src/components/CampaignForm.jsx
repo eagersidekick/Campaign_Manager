@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMutation, gql, useQuery } from '@apollo/client';
+import { useMutation, gql } from '@apollo/client';
 
 const ADD_CAMPAIGN = gql`
   mutation AddCampaign($campaignName: String!) {
@@ -18,14 +18,14 @@ const ADD_CAMPAIGN = gql`
   }
 `;
 
-// const GET_CAMPAIGNS = gql`
-// query FetchCamp {
-//     campaigns {
-//       _id
-//       campaignName
-//     }
-// }
-// `;
+const GET_CAMPAIGNS = gql`
+query FetchCamp {
+    campaigns {
+      _id
+      campaignName
+    }
+}
+`;
 // const { data, loading, error } = useQuery(GET_CAMPAIGNS);
 
 function CampaignForm() {
@@ -43,6 +43,7 @@ function CampaignForm() {
     onError: (error) => {
       setMessage(`Error creating campaign: ${error.message}`);
     },
+    refetchQueries: [{ query: GET_CAMPAIGNS}],
   });
 
   const handleSubmit = async (e) => {
