@@ -14,6 +14,8 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@ap
 import CharactersPage from './pages/CharactersPage';
 import DiceRoll from './pages/DiceRoll';
 import CharacterDetails from './pages/CharacterDetails';
+import { CampaignProvider } from './components/campaignContext';
+import CampaignDetailsPage from './pages/CampaignDetails';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -37,7 +39,8 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-    <div id="app-container" className='App'>
+      <CampaignProvider> 
+      <div id="app-container" className='App'>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -45,6 +48,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/campaign" element={<Campaign />} />
+          <Route path="/campaign/:campaignId" element={<CampaignDetailsPage />} />
           <Route path="/player" element={<PlayerPage />} />
           <Route path="/tabletalk" element={<TableTalk />} />
           <Route path="/test" element={<CharactersPage />} />
@@ -54,6 +58,7 @@ function App() {
         <Footer />
       </BrowserRouter>
     </div>
+    </CampaignProvider>
     </ApolloProvider>
   );
 }
