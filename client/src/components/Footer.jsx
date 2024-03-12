@@ -26,8 +26,6 @@ function Footer() {
     <footer id="footer" className='footer'>
       <div className='content has-text-centered'>
       <Link className='bad-script-regular navbar-item cm' to={data?.campaign?.campaignName ? "/player" : "/campaign"}>{data?.campaign?.campaignName || 'No Campaign Selected'}</Link>
-
-
       </div>
     </footer>
   );
