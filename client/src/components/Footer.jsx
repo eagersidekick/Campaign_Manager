@@ -25,7 +25,7 @@ function Footer() {
   return (
     <footer id="footer" className='footer'>
       <div className='content has-text-centered'>
-      <Link className='navbar-item bad-script-regular cm' to={data?.campaign?.campaignName ? "/player" : "/campaign"}>{data?.campaign?.campaignName || 'No Campaign Selected'}</Link>
+      <Link className='bad-script-regular navbar-item cm' to={data?.campaign?.campaignName ? "/player" : "/campaign"}>{data?.campaign?.campaignName || 'No Campaign Selected'}</Link>
 
 
       </div>

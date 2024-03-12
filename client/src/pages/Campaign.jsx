@@ -65,10 +65,10 @@ function Campaign() {
   return (
     <div className='character-container'>
     <div className="character-box content has-text-centered campaignContent">
-      <h1 className="title bad-script-regular has-text-white">Campaign Details</h1>
+      <h1 className="bad-script-regular title has-text-white">Campaign Details</h1>
       <button onClick={handleDeselectCampaign} style={{ marginBottom: '20px' }}>Deselect Campaign</button>
 
-      <ul className="campaignList bad-script-regular">
+      <ul className="bad-script-regular campaignList">
         {data?.campaigns.map((campaign) => (
           <li className="campaignListPoints" key={campaign._id} style={{ border: campaign._id === selectedCampaignId ? '2px solid #4CAF50' : 'none', padding: '8px', cursor: 'pointer' }}>
             {campaign.campaignName} |

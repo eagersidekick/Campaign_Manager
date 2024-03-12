@@ -83,7 +83,7 @@
 }
 
 #welcome-text {
-    color: 	#fff;
+    color: 	#fff !important;
 }
 
 .navbar-brand {
@@ -104,7 +104,7 @@
 
 /* Campaign Page Styling */
 .campaignContent {
-    background-color: #673147;
+    background-color: #673147 !important;
     border-radius: 10px;
     opacity: 80%;
     display: inline-flex;
@@ -112,7 +112,7 @@
     align-items: center;
     flex-direction: column;
     text-shadow: 1px 1px 1px black;
-    color: white;
+    color: white !important;
     margin-top: 150px;
 }
 
@@ -128,7 +128,7 @@
     font-family: "Bad Script", cursive;
     font-weight: 400;
     font-style: normal;
-    color: white;
+    color: white !important;
     text-shadow: 1px 1px 1px #673147;
   }
   

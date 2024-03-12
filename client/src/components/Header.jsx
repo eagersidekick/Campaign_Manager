@@ -37,20 +37,20 @@ function Header() {
       <nav id="header" className='navbar'>
         <div className='navbar-brand'>
 
-        <Link className='navbar-item bad-script-regular' to="/">Home</Link>
-        <Link className='navbar-item bad-script-regular' to="/campaign">Campaign</Link>
-        <Link className='navbar-item bad-script-regular' to="/diceroll">Roll Dice</Link>
+        <Link className='bad-script-regular navbar-item' to="/">Home</Link>
+        <Link className='bad-script-regular navbar-item' to="/campaign">Campaign</Link>
+        <Link className='bad-script-regular navbar-item' to="/diceroll">Roll Dice</Link>
 
-        <Link className='navbar-item bad-script-regular' to="/player">Player Page</Link>
-        <Link className='navbar-item bad-script-regular' to="/tabletalk">Table Talk</Link>
+        <Link className='bad-script-regular navbar-item' to="/player">Player Page</Link>
+        <Link className='bad-script-regular navbar-item' to="/tabletalk">Table Talk</Link>
        {/* <Link className='navbar-item bad-script-regular' to="/test">testing character api</Link> */}
        {/* <Link className='navbar-item bad-script-regular cm' to={data?.campaign?.campaignName ? "/player" : "/campaign"}>{data?.campaign?.campaignName || 'No Campaign Selected'}</Link> */}
 
 
         </div>
-        <div className='navbar-end bad-script-regular'>
+        <div className='bad-script-regular navbar-end'>
           {login}
-          <Link className='navbar-item bad-script-regular' to='/signup'>Sign-Up</Link>
+          <Link className='bad-script-regular navbar-item' to='/signup'>Sign-Up</Link>
         </div>
       </nav>
     </header>
