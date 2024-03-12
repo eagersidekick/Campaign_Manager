@@ -28,7 +28,7 @@ class Roller extends React.Component {
         if (this.state.rollResult) {
             var result = (
             <div className="section">
-            <p id="roll" className={"subtitle " + this.critCheck(this.state.rollResult, this.state.die)}>D{this.state.die}: {this.state.rollResult}</p>
+            <p id="roll" className={"bad-script subtitle " + this.critCheck(this.state.rollResult, this.state.die)}>D{this.state.die}: {this.state.rollResult}</p>
             </div>
             )
         }
@@ -36,13 +36,13 @@ class Roller extends React.Component {
         return (
             <div>
                 <div>
-                    <button onClick={() => this.rollDice(100)} className="button m-1">D100</button>
-                    <button onClick={() => this.rollDice(20)} className="button m-1">D20</button>
-                    <button onClick={() => this.rollDice(12)} className="button m-1">D12</button>
-                    <button onClick={() => this.rollDice(10)} className="button m-1">D10</button>
-                    <button onClick={() => this.rollDice(8)} className="button m-1">D8</button>
-                    <button onClick={() => this.rollDice(6)} className="button m-1">D6</button>
-                    <button onClick={() => this.rollDice(4)} className="button m-1">D4</button>
+                    <button onClick={() => this.rollDice(100)} className="bad-script-dark button m-1">D100</button>
+                    <button onClick={() => this.rollDice(20)} className="bad-script-dark button m-1">D20</button>
+                    <button onClick={() => this.rollDice(12)} className="bad-script-dark button m-1">D12</button>
+                    <button onClick={() => this.rollDice(10)} className="bad-script-dark button m-1">D10</button>
+                    <button onClick={() => this.rollDice(8)} className="bad-script-dark button m-1">D8</button>
+                    <button onClick={() => this.rollDice(6)} className="bad-script-dark button m-1">D6</button>
+                    <button onClick={() => this.rollDice(4)} className="bad-script-dark button m-1">D4</button>
                 </div>
                 {result}
             </div>

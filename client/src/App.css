@@ -167,6 +167,19 @@
     color: white !important;
     text-shadow: 1px 1px 1px #673147;
   }
+  .bad-script-dark {
+    font-family: "Bad Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: black !important;
+    text-shadow: 1px 1px 1px #673147;
+  }
+  .bad-script {
+    font-family: "Bad Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: 1px 1px 1px #673147;
+  }
 .cm {
     color: #ffffff !important;
     text-shadow: 2px 2px 2px #000000;
