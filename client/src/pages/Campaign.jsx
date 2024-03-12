@@ -56,23 +56,21 @@ function Campaign() {
 
 
   return (
-    <div className="content has-text-centered">
-      <div className='section'>
-        <h1 className="title">Campaign Details</h1>
-        <ul>
-          {data?.campaigns.map((campaign) => (
-            <li key={campaign._id} style={{ border: campaign._id === selectedCampaignId ? '2px solid #4CAF50' : 'none', padding: '8px', cursor: 'pointer' }}>
-              {campaign.campaignName} - Created by {campaign.campaignCreator}
-              <span onClick={() => handleSelectCampaign(campaign._id)}> 🔘 Select</span>
-              <span onClick={() => navigate(`/campaign/${campaign._id}`)}> 👁 View</span>
-              <span onClick={() => handleDeleteCampaign(campaign._id)} style={{ color: 'red' }}> ❌ Delete</span>
-            </li>
-          ))}
-        </ul>
-        <CampaignForm refetchCampaigns={refetch} />
-        {/* Optional: Pass selectedCampaignId and a method to refetch characters to Settings */}
-        {/* <Settings selectedCampaignId={selectedCampaignId} /> */}
-      </div>
+    <div className="content has-text-centered campaignContent">
+      <h1 className="title">Campaign Details</h1>
+      <ul className="campaignList">
+        {data?.campaigns.map((campaign) => (
+          <li className="campaignListPoints" key={campaign._id} style={{ border: campaign._id === selectedCampaignId ? '2px solid #4CAF50' : 'none', padding: '8px', cursor: 'pointer' }}>
+            {campaign.campaignName} - Created by {campaign.campaignCreator}
+            <span onClick={() => handleSelectCampaign(campaign._id)}> 🔘 Select</span>
+            <span onClick={() => navigate(`/campaign/${campaign._id}`)}> 👁 View</span>
+            <span onClick={() => handleDeleteCampaign(campaign._id)} style={{ color: 'red' }}> ❌ Delete</span>
+          </li>
+        ))}
+      </ul>
+      <CampaignForm refetchCampaigns={refetch} />
+      {/* Optional: Pass selectedCampaignId and a method to refetch characters to Settings */}
+      {/* <Settings selectedCampaignId={selectedCampaignId} /> */}
     </div>
   );
 }
