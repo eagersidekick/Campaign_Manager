@@ -16,6 +16,7 @@ const typeDefs = `
     characterRace: String
     characterClass: String
     inventory: [Inventory]!
+    campaign: Campaign
   }
 
   type Inventory {
@@ -26,7 +27,7 @@ const typeDefs = `
 
   type Campaign {
     _id: ID
-    campaignName: String
+    campaignName: String!
     campaignCreator: String
     createdAt: String
     characters: [Character]
@@ -43,6 +44,7 @@ const typeDefs = `
     characters(username: String): [Character]
     character(characterId: ID!): Character
     characterInventory(characterId: ID!): [Inventory]
+    charactersByCampaign(campaignId: ID!): [Character]
     campaigns: [Campaign]
     campaign(campaignId: ID!): Campaign
     me: User
@@ -55,7 +57,8 @@ const typeDefs = `
       characterBackground: String!,
       characterName: String!,
       characterRace: String!, 
-      characterClass: String!): Character
+      characterClass: String!,
+      campaignId: ID!): Character
     removeCharacter(characterId: ID!): Character
     addCampaign(campaignName: String!): Campaign
     addCharacterToCampaign(characterId: ID!, campaignId: ID!): Character

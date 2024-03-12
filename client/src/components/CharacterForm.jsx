@@ -1,20 +1,26 @@
 
 import { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
-
+import { useCampaign } from '../components/campaignContext';
 const ADD_CHARACTER_MUTATION = gql`
-  mutation AddCharacter($characterBackground: String!, $characterName: String!, $characterRace: String!, $characterClass: String!) {
-    addCharacter(characterBackground: $characterBackground, characterName: $characterName, characterRace: $characterRace, characterClass: $characterClass) {
+  mutation AddCharacter($characterBackground: String!, $characterName: String!, $characterRace: String!, $characterClass: String!, $campaignId: ID!) {
+    addCharacter(characterBackground: $characterBackground, characterName: $characterName, characterRace: $characterRace, characterClass: $characterClass, campaignId: $campaignId) {
       _id
       characterName
-      characterBackground
-      characterRace
-      characterClass
+      campaign {
+        _id
+        campaignName
+        characters {
+          _id
+          characterName
+        }
+      }
     }
   }
 `;
 
-function CharacterForm( {onCharacterCreated}) {
+function CharacterForm({ onCharacterCreated, campaigns }) {
+  const { selectedCampaignId } = useCampaign();
   const [characterDetails, setCharacterDetails] = useState({
     characterName: '',
     characterRace: '',
@@ -32,22 +38,24 @@ function CharacterForm( {onCharacterCreated}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!selectedCampaignId) {
+      console.error('Campaign ID is required');
+      return;
+    }
     try {
-        const {data} = await addCharacter({
-        variables: {
-          characterName: characterDetails.characterName,
-          characterRace: characterDetails.characterRace,
-          characterClass: characterDetails.characterClass,
-          characterBackground: characterDetails.characterBackground,
-        },
+      const { data } = await addCharacter({
+        variables: { ...characterDetails, campaignId: selectedCampaignId,
+         },
       });
+      console.log('selected campaign', selectedCampaignId)
       alert('Character created successfully!');
-      onCharacterCreated(data.addCharacter); 
+      onCharacterCreated && onCharacterCreated(data.addCharacter);
       setCharacterDetails({ characterName: '', characterRace: '', characterClass: '', characterBackground: '' }); // resets form 
     } catch (err) {
       alert(`Failed to create character: ${err.message}`);
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -90,6 +98,28 @@ function CharacterForm( {onCharacterCreated}) {
           required
         />
       </label>
+      <input
+  type="hidden"
+  name="campaignId"
+  value={selectedCampaignId} 
+/>
+
+      {campaigns && campaigns.length > 0 && (
+  <label>
+    Campaign:
+    <select
+      name="campaignId"
+      value={characterDetails.campaignId}
+      onChange={handleChange}
+      required
+    >
+      <option value="">Select a Campaign</option>
+      {campaigns.map((campaign) => (
+        <option key={campaign._id} value={campaign._id}>{campaign.campaignName}</option>
+      ))}
+    </select>
+  </label>
+      )}
       <button type="submit" disabled={loading}>Create Character</button>
       {error && <p>An error occurred: {error.message}</p>}
     </form>

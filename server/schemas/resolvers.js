@@ -20,16 +20,34 @@ const resolvers = {
         characterInventory: async (parent, {characterId}) => {
             return Inventory.findOne({ characterId }).populate('inventory');
         },
+        charactersByCampaign: async (_, { campaignId }) => {
+            try {
+              const characters = await Character.find({ campaignId });
+              return characters;
+            } catch (error) {
+                console.log("Error fetching ", err);
+                throw err;
+            }
+        },
         campaigns: async () => {
             try { 
                 const campaigns = await Campaign.find().populate('characters');
                 console.log(campaigns);
                 return campaigns;
-            } catch (err) {
+            } catch (error) {
                 console.log("Error fetching campaigns:", err);
                 throw err;
             }
-        }
+        },
+        campaign: async (_, { campaignId }) => {
+            try {
+              const campaign = await Campaign.findById(campaignId).populate('characters');
+              return campaign;
+            } catch (err) {
+              console.error(err);
+              throw new Error('Error fetching campaign');
+            }
+        },
     },
 
     Mutation: {
@@ -57,14 +75,25 @@ const resolvers = {
 
             return { token, user };
         },
-        addCharacter: async (parent, { characterName, characterRace, characterClass, characterBackground, username}) => {
-            const character = await Character.create({ characterName, characterRace, characterClass, characterBackground});
+        addCharacter: async (parent, { characterName, characterRace, characterClass, characterBackground, username, campaignId }) => {
+
+            const campaign = await Campaign.findById(campaignId);
+            if (!campaign) {
+                throw error('Campaign not found; Please create a campaign first');
+            }
+            const character = await Character.create({ characterName, characterRace, characterClass, characterBackground, campaign: campaignId});
+
             await User.findOneAndUpdate(
                 { username: username},
                 { $addToSet: {characters: character._id}},
                 { new: true, runValidators: true}
             )
-            return character;
+            await Campaign.findByIdAndUpdate(campaignId, { $addToSet: { characters: character._id } },
+                {new:true, runValidators: true });
+                const result = await Character.findById(character._id).populate('campaign');
+
+
+            return result;
         },
         // addCharacter: async (parent, { characterName, characterRace, characterClass, characterBackground, campaignId}) => {
             
