@@ -31,8 +31,8 @@ function CharacterDetails() {
   const character = data?.character;
 
   return (
-    <div className='characterDetailsContainer'>
-    <div className="character-details">
+    <div className='characterDetailsContainer character-container'>
+    <div className="bad-script-regular character-details character-box">
       <h2>Character Details: {character.characterName}</h2>
       <p>Race: {character.characterRace}</p>
       <p>Class: {character.characterClass}</p>

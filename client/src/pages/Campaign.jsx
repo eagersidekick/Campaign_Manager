@@ -1,9 +1,9 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useQuery, gql, useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../utils/auth';
 import CampaignForm from '../components/CampaignForm';
-import Settings from '../components/Settings';
+// import Settings from '../components/Settings';
 import { useCampaign } from '../components/campaignContext';
 
 const GET_CAMPAIGNS = gql`
@@ -37,8 +37,11 @@ function Campaign() {
   const navigate = useNavigate();
 
   const handleSelectCampaign = (campaignId) => {
-    setSelectedCampaignId(campaignId);
-    console.log(`Campaign ${campaignId} selected`);
+    if (selectedCampaignId === campaignId) {
+      setSelectedCampaignId(null); // deselects if the same campaign is clicked again
+    } else {
+      setSelectedCampaignId(campaignId); 
+    }
   };
 
   const handleDeleteCampaign = async (campaignId) => {
@@ -46,6 +49,10 @@ function Campaign() {
       variables: { campaignId },
     });
   };
+  const handleDeselectCampaign = () => {
+    setSelectedCampaignId(null);
+  };
+
 
   if (!Auth.loggedIn()) {
     return <p>User is not logged in.</p>;
@@ -56,12 +63,15 @@ function Campaign() {
 
 
   return (
-    <div className="content has-text-centered campaignContent">
-      <h1 className="title">Campaign Details</h1>
-      <ul className="campaignList">
+    <div className='character-container'>
+    <div className="character-box content has-text-centered campaignContent">
+      <h1 className="bad-script-regular title has-text-white">Campaign Details</h1>
+      <button onClick={handleDeselectCampaign} style={{ marginBottom: '20px' }}>Deselect Campaign</button>
+
+      <ul className="bad-script-regular campaignList">
         {data?.campaigns.map((campaign) => (
           <li className="campaignListPoints" key={campaign._id} style={{ border: campaign._id === selectedCampaignId ? '2px solid #4CAF50' : 'none', padding: '8px', cursor: 'pointer' }}>
-            {campaign.campaignName} - Created by {campaign.campaignCreator}
+            {campaign.campaignName} |
             <span onClick={() => handleSelectCampaign(campaign._id)}> 🔘 Select</span>
             <span onClick={() => navigate(`/campaign/${campaign._id}`)}> 👁 View</span>
             <span onClick={() => handleDeleteCampaign(campaign._id)} style={{ color: 'red' }}> ❌ Delete</span>
@@ -69,8 +79,8 @@ function Campaign() {
         ))}
       </ul>
       <CampaignForm refetchCampaigns={refetch} />
-      {/* Optional: Pass selectedCampaignId and a method to refetch characters to Settings */}
       {/* <Settings selectedCampaignId={selectedCampaignId} /> */}
+    </div>
     </div>
   );
 }

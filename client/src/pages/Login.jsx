@@ -54,7 +54,7 @@ const LoginForm = () => {
   return (
     <div className="content">
       <div className="section">
-        <h1 className="title has-text-centered">Log In</h1>
+        <h1 className="bad-script-regular title has-text-centered">Log In</h1>
         <Form noValidate validated={validated} onSubmit={handleFormSubmit} className="section">
           <Alert
             dismissible

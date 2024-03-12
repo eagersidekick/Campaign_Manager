@@ -32,25 +32,26 @@ const CampaignDetails = () => {
   if (error) return <p>Error! {error.message}</p>;
 
   return (
-    <div>
-    <h2>Campaign: {data.campaign.campaignName}</h2>
-    <div>
+    <div className='character-container'>
+  <div className='character-box'>
+    <h2 className='bad-script-regular'>Campaign: {data.campaign.campaignName}</h2>
+    <div className="character-grid">
       {data.campaign.characters.map((char) => (
-        <div key={char._id}>
+        <div key={char._id} className="character-card">
           <h3>{char.characterName}</h3>
           <p>Race: {char.characterRace}</p>
           <p>Class: {char.characterClass}</p>
-          <p>Background: {char.characterBackground}</p>
-          <ul>
-            Inventory:
-            {char.inventory.map((item) => (
-              <li key={item._id}>{item.itemName}</li>
-            ))}
-          </ul>
+          <div className="character-inventory">
+            <p>Inventory:</p>
+            
+          </div>
         </div>
       ))}
     </div>
   </div>
+</div>
+
+
   );
  };
 
