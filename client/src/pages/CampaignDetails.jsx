@@ -32,8 +32,9 @@ const CampaignDetails = () => {
   if (error) return <p>Error! {error.message}</p>;
 
   return (
-    <div>
-    <h2>Campaign: {data.campaign.campaignName}</h2>
+    <div className='character-container'>
+    <div className='character-box'>
+    <h2 className='bad-script-regular'>Campaign: {data.campaign.campaignName}</h2>
     <div>
       {data.campaign.characters.map((char) => (
         <div key={char._id}>
@@ -50,6 +51,7 @@ const CampaignDetails = () => {
         </div>
       ))}
     </div>
+  </div>
   </div>
   );
  };

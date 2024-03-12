@@ -7,8 +7,8 @@ export default function Settings({ onOpenForm, characters }) {
         // <div className="">
             <div className="character-container">
             <div className='character-box campaignContent'>
-                <h1 className="title text-color">Character List</h1>
-                <div className="nameList">
+                <h1 className="title bad-script-regular has-text-white">Character List</h1>
+                <div className="nameList bad-script-regular has-text-white">
                 {characters.map((character) => (
                     <Link key={character._id} to={`/character/${character._id}`} className="">
                     {character.characterName}

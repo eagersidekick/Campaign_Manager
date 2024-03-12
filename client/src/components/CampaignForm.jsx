@@ -57,9 +57,9 @@ function CampaignForm() {
   };
 
   return (
-    <div className='section'>
+    <div>
       <form onSubmit={handleSubmit}>
-        <div className='createCampaignForm'>
+        <div className='createCampaignForm bad-script-regular'>
           <label htmlFor="campaignName">Campaign Name:</label>
           <input
             id="campaignName"
