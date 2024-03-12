@@ -32,7 +32,7 @@ function CharacterDetails() {
 
   return (
     <div className='characterDetailsContainer character-container'>
-    <div className="character-details character-box bad-script-regular">
+    <div className="bad-script-regular character-details character-box">
       <h2>Character Details: {character.characterName}</h2>
       <p>Race: {character.characterRace}</p>
       <p>Class: {character.characterClass}</p>

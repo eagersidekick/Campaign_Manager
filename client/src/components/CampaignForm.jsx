@@ -59,7 +59,7 @@ function CampaignForm() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className='createCampaignForm bad-script-regular'>
+        <div className='bad-script-regular createCampaignForm'>
           <label htmlFor="campaignName">Campaign Name:</label>
           <input
             id="campaignName"

@@ -5,7 +5,7 @@ function Home() {
       <h1 id='welcome-text' className='bad-script-regular title'>Welcome, adventurer!</h1>
       <div className="column">
       <div>
-        <p className='subtitle bad-script-regular'>Manage TableTop campaigns and characters</p>
+        <p className='bad-script-regular subtitle'>Manage TableTop campaigns and characters</p>
         <p></p>
       </div>
       </div>
