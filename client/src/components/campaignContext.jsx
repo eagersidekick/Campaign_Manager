@@ -5,7 +5,7 @@ const CampaignContext = createContext();
 export const useCampaign = () => useContext(CampaignContext);
 
 export const CampaignProvider = ({ children }) => {
-  const [selectedCampaignId, setSelectedCampaignId] = useState(null);
+  const [selectedCampaignId, setSelectedCampaignId] = useState({ id: null, name: ''});
 
   const value = {
     selectedCampaignId,

@@ -1,6 +1,16 @@
 import { Link } from 'react-router-dom';
 import 'bulma/css/bulma.min.css';
 import Auth from '../utils/auth'
+import { useCampaign } from './campaignContext';
+import {useQuery, gql} from '@apollo/client';
+
+const GET_CAMPAIGN_ID = gql`
+query GetCampaignById($campaignId: ID!) {
+  campaign(campaignId: $campaignId) {
+    _id
+    campaignName
+  }
+}`
 
 
 function Header() {
@@ -13,6 +23,14 @@ function Header() {
   {
     login = <Link className='navbar-item silver-text' to='/login'>Login</Link>
   }
+  const { selectedCampaignId } = useCampaign();
+  const { data, loading, error } = useQuery(GET_CAMPAIGN_ID, {
+    variables: { campaignId: selectedCampaignId },
+    skip: !selectedCampaignId,
+  });
+
+  if (loading) return <p>Loading campaign name...</p>;
+  if (error) console.log('No campaign selected');
 
   return (
     <header>
@@ -20,11 +38,14 @@ function Header() {
         <div className='navbar-brand'>
 
         <Link className='navbar-item silver-text' to="/">Home</Link>
+        <Link className='navbar-item silver-text' to="/campaign">Campaign</Link>
+        <Link className='navbar-item silver-text' to="/diceroll">Roll Dice</Link>
+
         <Link className='navbar-item silver-text' to="/player">Player Page</Link>
         <Link className='navbar-item silver-text' to="/tabletalk">Table Talk</Link>
-       <Link className='navbar-item silver-text' to="/campaign">Campaign</Link>
-       <Link className='navbar-item silver-text' to="/diceroll">Roll Dice</Link>
        <Link className='navbar-item red-text' to="/test">testing character api</Link>
+       <Link className='navbar-item silver-text' to="/player">{data?.campaign?.campaignName || 'No Campaign Selected'}</Link>
+
         </div>
         <div className='navbar-end'>
           {login}
