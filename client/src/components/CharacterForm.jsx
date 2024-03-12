@@ -67,7 +67,7 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label className='label'>
+      <label className='modal-text label'>
         Character Name:
         <input
           type="text"
@@ -78,7 +78,7 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           className='input'
         />
       </label>
-      <label className='label'>
+      <label className='modal-text label'>
         Race:
         <input
           type="text"
@@ -89,7 +89,7 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           className='input'
         />
       </label>
-      <label className='label'>
+      <label className='modal-text label'>
         Class:
         <input
           type="text"
@@ -100,7 +100,7 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           className='input'
         />
       </label>
-      <label className='label'>
+      <label className='modal-text label'>
         Background:
         <textarea
           name="characterBackground"
