@@ -1,33 +1,16 @@
-function DiceRoll() {
+import Roller from '../components/Roller';
 
-// function diceSelect(dice){
+export default function DiceRoll() {
 
-// }
-
-function rollDice(max) {
-    return Math.floor(Math.random() * max + 1);
-};
-
-function refreshPage() {
-    window.location.reload()};
-
-    return (
-      <div id="background-img" className='content has-text-centered silver-text'>
+  return (
+    <div className='character-container'>
+      <div className='character-box has-text-centered'>
         <h1 id='welcome-text' className='bad-script-regular title'>Roll Dice</h1>
         <div className='section'>
           <p className='bad-script-regular subtitle'>Click to Roll Dice!</p>
-          <button class="button" onClick={refreshPage}>Reroll</button>
-            <p className="bad-script-regular">D100 = {rollDice(100)}</p>
-            <p className="bad-script-regular">D20 = {rollDice(20)}</p>
-            <p className="bad-script-regular">D12 = {rollDice(12)}</p>
-            <p className="bad-script-regular">D10 = {rollDice(10)}</p>
-            <p className="bad-script-regular">D8 = {rollDice(8)}</p>
-            <p className="bad-script-regular">D6 = {rollDice(6)}</p>
-            <p className="bad-script-regular">D4 = {rollDice(4)}</p>
+          <Roller />
         </div>
       </div>
-    );
-  }
-  
-  export default DiceRoll;
-  
+    </div>
+  );
+}
