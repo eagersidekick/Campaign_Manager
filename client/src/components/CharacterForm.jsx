@@ -21,13 +21,21 @@ const ADD_CHARACTER_MUTATION = gql`
 
 function CharacterForm({ onCharacterCreated, campaigns }) {
   const { selectedCampaignId } = useCampaign();
+  const [message, setMessage] = useState('');
   const [characterDetails, setCharacterDetails] = useState({
     characterName: '',
     characterRace: '',
     characterClass: '',
     characterBackground: '',
   });
-  const [addCharacter, { loading, error }] = useMutation(ADD_CHARACTER_MUTATION);
+  const [addCharacter, { loading, error }] = useMutation(ADD_CHARACTER_MUTATION, {
+    onCompleted: () => {
+      setMessage('Character created successfully!');
+    },
+    onError: (error) => {
+      setMessage(`Please select a campaign first: ${error.message}`);
+    },
+  });
 
   const handleChange = (e) => {
     setCharacterDetails({
@@ -38,8 +46,9 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage('');
     if (!selectedCampaignId) {
-      console.error('Campaign ID is required');
+      setMessage('Campaign ID is required');
       return;
     }
     try {
@@ -48,19 +57,17 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
          },
       });
       console.log('selected campaign', selectedCampaignId)
-      alert('Character created successfully!');
       onCharacterCreated && onCharacterCreated(data.addCharacter);
       setCharacterDetails({ characterName: '', characterRace: '', characterClass: '', characterBackground: '' }); // resets form 
     } catch (err) {
-      alert(`Failed to create character: ${err.message}`);
+      console.log(`Failed to create character: ${err.message}`);
     }
   };
 
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* <p className='is-danger'>Make sure to have a campaign selected for this character!</p> */}
-      <label className='label has-text-light'>
+      <label className='label'>
         Character Name:
         <input
           type="text"
@@ -71,7 +78,7 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           className='input'
         />
       </label>
-      <label className='label has-text-light'>
+      <label className='label'>
         Race:
         <input
           type="text"
@@ -82,7 +89,7 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           className='input'
         />
       </label>
-      <label className='label has-text-light'>
+      <label className='label'>
         Class:
         <input
           type="text"
@@ -93,7 +100,7 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           className='input'
         />
       </label>
-      <label className='label has-text-light'>
+      <label className='label'>
         Background:
         <textarea
           name="characterBackground"
@@ -126,7 +133,8 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
   </label>
       )}
       <button type="submit" disabled={loading} className='button'>Create Character</button>
-      {error && <p>An error occurred: {error.message}</p>}
+      {message && <div className="success-message">{message}</div>}
+
     </form>
   );
 }
