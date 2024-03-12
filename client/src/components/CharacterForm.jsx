@@ -59,7 +59,8 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+      {/* <p className='is-danger'>Make sure to have a campaign selected for this character!</p> */}
+      <label className='label has-text-light'>
         Character Name:
         <input
           type="text"
@@ -67,9 +68,10 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           value={characterDetails.characterName}
           onChange={handleChange}
           required
+          className='input'
         />
       </label>
-      <label>
+      <label className='label has-text-light'>
         Race:
         <input
           type="text"
@@ -77,9 +79,10 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           value={characterDetails.characterRace}
           onChange={handleChange}
           required
+          className='input'
         />
       </label>
-      <label>
+      <label className='label has-text-light'>
         Class:
         <input
           type="text"
@@ -87,15 +90,17 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           value={characterDetails.characterClass}
           onChange={handleChange}
           required
+          className='input'
         />
       </label>
-      <label>
+      <label className='label has-text-light'>
         Background:
         <textarea
           name="characterBackground"
           value={characterDetails.characterBackground}
           onChange={handleChange}
           required
+          className='textarea'
         />
       </label>
       <input
@@ -120,7 +125,7 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
     </select>
   </label>
       )}
-      <button type="submit" disabled={loading}>Create Character</button>
+      <button type="submit" disabled={loading} className='button'>Create Character</button>
       {error && <p>An error occurred: {error.message}</p>}
     </form>
   );

@@ -1,5 +1,9 @@
 function DiceRoll() {
 
+// function diceSelect(dice){
+
+// }
+
 function rollDice(max) {
     return Math.floor(Math.random() * max + 1);
 };

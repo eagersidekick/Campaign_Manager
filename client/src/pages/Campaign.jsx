@@ -27,7 +27,7 @@ mutation RemoveCampaign($campaignId: ID!) {
 `;
 
 function Campaign() {
-  
+
   const { selectedCampaignId, setSelectedCampaignId } = useCampaign(); // uses hook to get these
 
   const { loading, data, error, refetch } = useQuery(GET_CAMPAIGNS);
@@ -37,7 +37,7 @@ function Campaign() {
   const navigate = useNavigate();
 
   const handleSelectCampaign = (campaignId) => {
-    setSelectedCampaignId(campaignId); 
+    setSelectedCampaignId(campaignId);
     console.log(`Campaign ${campaignId} selected`);
   };
 
@@ -56,11 +56,11 @@ function Campaign() {
 
 
   return (
-    <div className="content has-text-centered">
+    <div className="content has-text-centered campaignContent">
       <h1 className="title">Campaign Details</h1>
-      <ul>
+      <ul className="campaignList">
         {data?.campaigns.map((campaign) => (
-          <li key={campaign._id} style={{ border: campaign._id === selectedCampaignId ? '2px solid #4CAF50' : 'none', padding: '8px', cursor: 'pointer' }}>
+          <li className="campaignListPoints" key={campaign._id} style={{ border: campaign._id === selectedCampaignId ? '2px solid #4CAF50' : 'none', padding: '8px', cursor: 'pointer' }}>
             {campaign.campaignName} - Created by {campaign.campaignCreator}
             <span onClick={() => handleSelectCampaign(campaign._id)}> 🔘 Select</span>
             <span onClick={() => navigate(`/campaign/${campaign._id}`)}> 👁 View</span>

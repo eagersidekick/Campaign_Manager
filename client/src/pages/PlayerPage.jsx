@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { gql } from "@apollo/client";
 
 import CharacterForm from '../components/CharacterForm';
+import CharacterList from '../components/CharacterList';
 import Settings from '../components/Settings';
 import Modal from '../components/Modal';
 import 'bulma/css/bulma.min.css';

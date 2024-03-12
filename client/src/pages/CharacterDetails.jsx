@@ -31,12 +31,14 @@ function CharacterDetails() {
   const character = data?.character;
 
   return (
+    <div className='characterDetailsContainer'>
     <div className="character-details">
       <h2>Character Details: {character.characterName}</h2>
       <p>Race: {character.characterRace}</p>
       <p>Class: {character.characterClass}</p>
       <p>Background: {character.characterBackground}</p>
       <p>Campaign: {character.characterCampaign}</p>
+    </div>
     </div>
   );
 }
