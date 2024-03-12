@@ -57,18 +57,19 @@ function CampaignForm() {
   };
 
   return (
-    <div>
+    <div className='section'>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="campaignName">Campaign Name:</label>
+        <div className='section'>
+          <label className='label' htmlFor="campaignName">Campaign Name:</label>
           <input
             id="campaignName"
             type="text"
             value={campaignName}
             onChange={(e) => setCampaignName(e.target.value)}
             required
+            className='input'
           />
-          <button type="submit" disabled={loading}>
+          <button className='button' type="submit" disabled={loading}>
             {loading ? 'Creating...' : 'Create Campaign'}
           </button>
         </div>

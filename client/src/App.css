@@ -20,15 +20,16 @@
     color: 	#fff;
 }
 
-/* .tile {
+.tile {
     margin-left: 20px;
     display: flex;
     opacity: 90%;
-    
 }
+
 .padding {
     padding-left: 30px;
-} */
+}
+
 .navbar-brand {
     font-size: larger;
 }
@@ -39,9 +40,13 @@
 
 .footer {
     /* position: absolute; */
-    position: fixed;
+    /* position: fixed; */
     left: 0;
     bottom: 0;
     width: 100%;
     height: 2.5rem;
+}
+
+.label{
+    color: hsl(0, 0%, 96%);
 }
