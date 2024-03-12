@@ -56,7 +56,8 @@ function Campaign() {
 
 
   return (
-    <div className="content has-text-centered campaignContent">
+    <div className='character-container'>
+    <div className="character-box content has-text-centered campaignContent">
       <h1 className="title">Campaign Details</h1>
       <ul className="campaignList">
         {data?.campaigns.map((campaign) => (
@@ -71,6 +72,7 @@ function Campaign() {
       <CampaignForm refetchCampaigns={refetch} />
       {/* Optional: Pass selectedCampaignId and a method to refetch characters to Settings */}
       {/* <Settings selectedCampaignId={selectedCampaignId} /> */}
+    </div>
     </div>
   );
 }
