@@ -5,10 +5,10 @@ const {signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
     Query: {
         users: async () => {
-            return User.find().populate('characters');
+            return User.find().populate('campaign');
         },
         user: async (parent, { username }) => {
-            return User.findOne({ username }).populate('characters');
+            return User.findOne({ username }).populate('campaign');
         },
         characters: async (parent, { username }) => {
             const params = username ? { username } : {};
