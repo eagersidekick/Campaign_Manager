@@ -43,8 +43,9 @@ function Header() {
 
         <Link className='navbar-item bad-script-regular' to="/player">Player Page</Link>
         <Link className='navbar-item bad-script-regular' to="/tabletalk">Table Talk</Link>
-       <Link className='navbar-item bad-script-regular' to="/test">testing character api</Link>
-       <Link className='navbar-item bad-script-regular' to="/player">{data?.campaign?.campaignName || 'No Campaign Selected'}</Link>
+       {/* <Link className='navbar-item bad-script-regular' to="/test">testing character api</Link> */}
+       {/* <Link className='navbar-item bad-script-regular cm' to={data?.campaign?.campaignName ? "/player" : "/campaign"}>{data?.campaign?.campaignName || 'No Campaign Selected'}</Link> */}
+
 
         </div>
         <div className='navbar-end bad-script-regular'>

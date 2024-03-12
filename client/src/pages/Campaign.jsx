@@ -71,7 +71,7 @@ function Campaign() {
       <ul className="campaignList bad-script-regular">
         {data?.campaigns.map((campaign) => (
           <li className="campaignListPoints" key={campaign._id} style={{ border: campaign._id === selectedCampaignId ? '2px solid #4CAF50' : 'none', padding: '8px', cursor: 'pointer' }}>
-            {campaign.campaignName} - Created by {campaign.campaignCreator}
+            {campaign.campaignName} |
             <span onClick={() => handleSelectCampaign(campaign._id)}> 🔘 Select</span>
             <span onClick={() => navigate(`/campaign/${campaign._id}`)}> 👁 View</span>
             <span onClick={() => handleDeleteCampaign(campaign._id)} style={{ color: 'red' }}> ❌ Delete</span>

@@ -43,6 +43,15 @@ query FetchCamp {
 }
 `;
 
+const DELETE_CHARACTER = gql`
+mutation DeleteCharacter($characterId: ID!) {
+  removeCharacter(characterId: $characterId) {
+    _id
+    characterName
+  }
+}
+`
+
 function CampaignSelector({ onCampaignSelected }) {
   if (Auth.loggedIn()) {
     const { loading, data, error } = useQuery(GET_CAMPAIGNS);
@@ -62,15 +71,19 @@ function CampaignSelector({ onCampaignSelected }) {
 }
 
 function PlayerPage() {
-  
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCampaign, setSelectedCampaign] = useState(null);
-
+    const [message, setMessage] = useState('');
     const { loading, data, error, refetch } = useQuery(FETCH_CHARACTERS);
     const [addCharacter] = useMutation(ADD_CHARACTER_MUTATION, {
       onCompleted: () => refetch(), // refetches characters after adding a new one to update the list
     });
-
+    const [deleteCharacter] = useMutation(DELETE_CHARACTER, {
+      onCompleted: () => {
+        refetch(); 
+      },
+    });
     const toggleModal = () => setIsModalOpen(!isModalOpen);
 
     // function to be called from CharacterForm on character creation
@@ -89,6 +102,15 @@ function PlayerPage() {
         console.error('Error adding new character:', error);
       }
     };
+    const handleDeleteCharacter = async (characterId) => {
+      try {
+        await deleteCharacter({ variables: { characterId} });
+        setMessage('Character deleted!')
+      } catch (error) {
+        console.error('error deleting character', error);
+      }
+    };
+    
     if (!Auth.loggedIn()) {
       return <p>User is not logged in. </p>;
     }
@@ -98,12 +120,14 @@ function PlayerPage() {
 
     return (
       <div className='content has-text-centered'>
-        <Settings onOpenForm={toggleModal} characters={data?.characters || []} />
+        <Settings onOpenForm={toggleModal} characters={data?.characters || []} handleDeleteCharacter={handleDeleteCharacter} />
         {isModalOpen && (
           <Modal onClose={toggleModal}>
             <CharacterForm onCharacterCreated={handleAddNewCharacter} />
           </Modal>
         )}
+                {message && <div className="delm">{message}</div>}
+
       </div>
     );
   }

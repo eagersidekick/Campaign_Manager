@@ -30,13 +30,13 @@ query FetchCamp {
 
 function CampaignForm() {
   const [campaignName, setCampaignName] = useState('');
-  const [message, setMessage] = useState(''); // state to hold the success or error message
+  const [message, setMessage] = useState(''); 
   const [createdCampaignName, setCreatedCampaignName] = useState(''); // state to hold the name of the created campaign
 
   const [addCampaign, { loading, error }] = useMutation(ADD_CAMPAIGN, {
     variables: { campaignName },
     onCompleted: (data) => {
-      setMessage('Campaign created successfullyasdasd!');
+      setMessage('Campaign created successfully!');
       setCreatedCampaignName(data.addCampaign.campaignName); // saves the name of the created campaign
       setCampaignName(''); // clears the form input
     },
@@ -74,7 +74,7 @@ function CampaignForm() {
           </button>
         </div>
       </form>
-      {message && <p>{message}</p>} {/* displays success or error message */}
+      {/* {message && <p>{message}</p>} */}
       {createdCampaignName && <p>Campaign Added: {createdCampaignName}</p>} 
     </div>
   );
