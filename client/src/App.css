@@ -77,6 +77,10 @@
     flex-direction: column;
     align-items: center;
 }
+.nameList a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
 .box {
     width: fit-content;
     text-align: center;

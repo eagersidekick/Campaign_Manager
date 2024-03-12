@@ -37,7 +37,6 @@ function CharacterDetails() {
       <p>Race: {character.characterRace}</p>
       <p>Class: {character.characterClass}</p>
       <p>Background: {character.characterBackground}</p>
-      <p>Campaign: {character.characterCampaign}</p>
     </div>
     </div>
   );
