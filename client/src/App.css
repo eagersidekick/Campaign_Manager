@@ -215,3 +215,17 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     opacity: 90%;
   }
+  .user-message {
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    background-color: #f8d7da; 
+    color: #721c24; 
+    border-radius: 5px;
+    border: 1px solid #f5c6cb;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px; 
+  }
+  
