@@ -63,7 +63,8 @@ function Campaign() {
 
 
   return (
-    <div className="content has-text-centered campaignContent">
+    <div className='character-container'>
+    <div className="character-box content has-text-centered campaignContent">
       <h1 className="title">Campaign Details</h1>
       <button onClick={handleDeselectCampaign} style={{ marginBottom: '20px' }}>Deselect Campaign</button>
 
@@ -79,6 +80,7 @@ function Campaign() {
       </ul>
       <CampaignForm refetchCampaigns={refetch} />
       {/* <Settings selectedCampaignId={selectedCampaignId} /> */}
+    </div>
     </div>
   );
 }

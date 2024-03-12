@@ -7,11 +7,11 @@
     background-size: cover;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 @media screen and (max-width: 768px) {
     #app-container {
-        background-size: contain;
         padding: 20px;
     }
 
@@ -30,6 +30,10 @@
     #footer {
         position:fixed;
     }
+    .navbar-brand {
+        flex-direction: column;
+    }
+
 }
 
 .nameList {
@@ -55,7 +59,7 @@
     color: black;
 }
 .character-box {
-    background-color: #e5d2b8; 
+    background-color: #673147; 
     padding: 20px;
     border-radius: 8px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
