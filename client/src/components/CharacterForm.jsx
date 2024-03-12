@@ -59,7 +59,8 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label className='label'>
+      {/* <p className='is-danger'>Make sure to have a campaign selected for this character!</p> */}
+      <label className='label has-text-light'>
         Character Name:
         <input
           type="text"
@@ -70,7 +71,7 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           className='input'
         />
       </label>
-      <label className='label'>
+      <label className='label has-text-light'>
         Race:
         <input
           type="text"
@@ -81,7 +82,7 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           className='input'
         />
       </label>
-      <label className='label'>
+      <label className='label has-text-light'>
         Class:
         <input
           type="text"
@@ -92,7 +93,7 @@ function CharacterForm({ onCharacterCreated, campaigns }) {
           className='input'
         />
       </label>
-      <label className='label'>
+      <label className='label has-text-light'>
         Background:
         <textarea
           name="characterBackground"
