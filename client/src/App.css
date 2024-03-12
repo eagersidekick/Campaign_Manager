@@ -63,7 +63,7 @@
     padding: 20px;
     border-radius: 8px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    opacity: 90%;
+    opacity: 80%;
 }
 .column {
     flex-direction: column;
@@ -79,9 +79,7 @@
 #footer {
     background-color: transparent;
 }
-.silver-text {
-    color: 	#fff;
-}
+
 #welcome-text {
     color: 	#fff;
 }
@@ -106,13 +104,14 @@
 .campaignContent {
     background-color: #673147;
     border-radius: 10px;
-    opacity: 75%;
+    opacity: 80%;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-shadow: 1px 1px 1px black;
     color: white;
+    margin-top: 150px;
 }
 
 .campaignListPoints {
@@ -121,6 +120,14 @@
 
 .createCampaignForm {
     display: flex;
+    flex-direction: column;
 }
-
+.bad-script-regular {
+    font-family: "Bad Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    text-shadow: 1px 1px 1px #673147;
+  }
+  
 
