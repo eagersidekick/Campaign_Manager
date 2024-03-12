@@ -59,7 +59,7 @@ function CampaignForm() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='createCampaignForm'>
           <label htmlFor="campaignName">Campaign Name:</label>
           <input
             id="campaignName"
