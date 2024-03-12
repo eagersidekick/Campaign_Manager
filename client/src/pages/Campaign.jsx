@@ -27,7 +27,7 @@ mutation RemoveCampaign($campaignId: ID!) {
 `;
 
 function Campaign() {
-  
+
   const { selectedCampaignId, setSelectedCampaignId } = useCampaign(); // uses hook to get these
 
   const { loading, data, error, refetch } = useQuery(GET_CAMPAIGNS);
@@ -37,7 +37,7 @@ function Campaign() {
   const navigate = useNavigate();
 
   const handleSelectCampaign = (campaignId) => {
-    setSelectedCampaignId(campaignId); 
+    setSelectedCampaignId(campaignId);
     console.log(`Campaign ${campaignId} selected`);
   };
 

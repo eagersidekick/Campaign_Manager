@@ -57,7 +57,7 @@ function CampaignForm() {
   };
 
   return (
-    <div>
+    <div className='section'>
       <form onSubmit={handleSubmit}>
         <div className='createCampaignForm'>
           <label htmlFor="campaignName">Campaign Name:</label>
@@ -67,8 +67,9 @@ function CampaignForm() {
             value={campaignName}
             onChange={(e) => setCampaignName(e.target.value)}
             required
+            className='input'
           />
-          <button type="submit" disabled={loading}>
+          <button className='button' type="submit" disabled={loading}>
             {loading ? 'Creating...' : 'Create Campaign'}
           </button>
         </div>
