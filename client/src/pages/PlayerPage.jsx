@@ -112,7 +112,7 @@ function PlayerPage() {
     };
     
     if (!Auth.loggedIn()) {
-      return <p>User is not logged in. </p>;
+      return <p className='user-message'>User is not logged in. </p>;
     }
 
     if (loading) return <p>Loading characters...</p>;
