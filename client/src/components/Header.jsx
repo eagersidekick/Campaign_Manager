@@ -17,11 +17,11 @@ function Header() {
   var login;
   if(Auth.loggedIn())
   {
-    login = <a className='navbar-item silver-text' href="/" onClick={() => Auth.logout()}>Logout</a>
+    login = <a className='bad-script-regular navbar-item' href="/" onClick={() => Auth.logout()}>Logout</a>
   }
   else
   {
-    login = <Link className='navbar-item silver-text' to='/login'>Login</Link>
+    login = <Link className='bad-script-regular navbar-item' to='/login'>Login</Link>
   }
   const { selectedCampaignId } = useCampaign();
   const { data, loading, error } = useQuery(GET_CAMPAIGN_ID, {
