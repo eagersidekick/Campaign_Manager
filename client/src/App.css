@@ -77,6 +77,10 @@
     flex-direction: column;
     align-items: center;
 }
+.nameList a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
 .box {
     width: fit-content;
     text-align: center;
@@ -178,6 +182,12 @@
     font-family: "Bad Script", cursive;
     font-weight: 400;
     font-style: normal;
+}
+  .modal-text {
+    font-family: "Bad Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: white !important;
     text-shadow: 1px 1px 1px #673147;
   }
 .cm {
