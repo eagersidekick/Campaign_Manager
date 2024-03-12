@@ -178,6 +178,12 @@
     font-family: "Bad Script", cursive;
     font-weight: 400;
     font-style: normal;
+}
+  .modal-text {
+    font-family: "Bad Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: white !important;
     text-shadow: 1px 1px 1px #673147;
   }
 .cm {

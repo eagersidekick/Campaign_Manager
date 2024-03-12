@@ -11,7 +11,7 @@ export default function Settings({ onOpenForm, characters, handleDeleteCharacter
                 <div className="bad-script-regular nameList">
                 {characters.map((character) => (
                     <div key={character._id} className=''> 
-                    <Link to={`/character/${character._id}`} className="">
+                    <Link to={`/character/${character._id}`} className="bad-script-regular is-size-4">
                     {character.characterName} |
                   </Link>
                   <span onClick={() => handleDeleteCharacter(character._id)} style={{ color: 'red', cursor: 'pointer' }}> ❌Delete</span> </div>
