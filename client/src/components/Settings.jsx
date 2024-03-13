@@ -4,7 +4,7 @@ import '/src/App.css';
 
 export default function Settings({ onOpenForm, characters, handleDeleteCharacter }) {
     return (
-        // <div className="">
+        // container for content
         <div className="character-container">
             <div className='character-box'>
                 <p className="bad-script-regular subtitle text-color">Character List</p>
@@ -20,6 +20,5 @@ export default function Settings({ onOpenForm, characters, handleDeleteCharacter
             </div>
             <button className='button' onClick={onOpenForm}>New Character</button>
         </div>
-        // </div>
     );
 }
