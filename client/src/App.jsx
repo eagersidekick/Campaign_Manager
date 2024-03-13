@@ -40,6 +40,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <CampaignProvider> 
+        {/* creates the background image for the app */}
       <div id="app-container" className='App'>
       <BrowserRouter>
         <Header />
