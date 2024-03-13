@@ -2,6 +2,7 @@ const { User, Character, Inventory, Campaign} = require('../models');
 const { findById } = require('../models/Character');
 const {signToken, AuthenticationError } = require('../utils/auth');
 
+// Resolver queries for users, characters, campaigns, and inventory.
 const resolvers = {
     Query: {
         users: async () => {
@@ -49,7 +50,7 @@ const resolvers = {
             }
         },
     },
-
+    // Resolver mutations to add/delete users, campaigns, characters, and inventories
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
             console.log(User);

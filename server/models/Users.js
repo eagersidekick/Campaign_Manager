@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+//Schema for Users
 const userSchema = new Schema({
     username: {
         type: String,
@@ -19,6 +20,7 @@ const userSchema = new Schema({
         required: true,
         minLength: 5,
     },
+    // Links campaign to users schema
     campaign: [
         {
             type: Schema.Types.ObjectId,

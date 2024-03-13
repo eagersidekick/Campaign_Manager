@@ -1,5 +1,6 @@
 const {Schema, model} = require('mongoose');
 
+// Schema for characters
 const characterSchema = new Schema({
     characterName: {
         type: String,
@@ -22,10 +23,12 @@ const characterSchema = new Schema({
         required: true,
         trim: true
     },
+    // Connects character schema to campaign
     campaign: {
         type: Schema.Types.ObjectId,
         ref: 'Campaign',
     },
+    //Connects inventory to characters
     inventory: [
         {
             type: Schema.Types.ObjectId,
