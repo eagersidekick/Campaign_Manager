@@ -17,6 +17,10 @@ Dani Sweetwood (https://github.com/DaniSweets)
 Heather Crawford (https://github.com/eagersidekick)
 
 ## Screenshots
+
+![Home Page](https://github.com/eagersidekick/Campaign_Manager/assets/144719329/ffa62073-047d-4f7a-93af-b0988c6d8618)
+![Dice Page](https://github.com/eagersidekick/Campaign_Manager/assets/144719329/2430182f-4095-48bc-89fb-3aac21474b84)
+![cmCamp](https://github.com/eagersidekick/Campaign_Manager/assets/144719329/03e4545e-b0dc-4bb1-a7a0-b2412d6a44ef)
 ![Screenshot of the home page](\client\src\assets\HomeScreenshot.png)
 ![Screenshot of the campaign page](\client\src\assets\CampaignScreenshot.png)
 ![Screenshot of the dice roller page](\client\src\assets\DiceRollerScreenshot.png)
