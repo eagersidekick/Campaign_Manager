@@ -17,9 +17,9 @@ Dani Sweetwood (https://github.com/DaniSweets)
 Heather Crawford (https://github.com/eagersidekick)
 
 ## Screenshots
-![Screenshot of the home page](client\src\assets\HomeScreenshot.png)
-![Screenshot of the campaign page](client\src\assets\CampaignScreenshot.png)
-![Screenshot of the dice roller page](client\src\assets\DiceRollerScreenshot.png)
+![Screenshot of the home page](\client\src\assets\HomeScreenshot.png)
+![Screenshot of the campaign page](\client\src\assets\CampaignScreenshot.png)
+![Screenshot of the dice roller page](\client\src\assets\DiceRollerScreenshot.png)
 
 ## Links
 Repo: https://github.com/eagersidekick/Campaign_Manager
