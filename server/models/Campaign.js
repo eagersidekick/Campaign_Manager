@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
+//Schema for the campaigns
 const campaignSchema = new Schema ({
     campaignName: {
         type: String,
@@ -9,6 +10,7 @@ const campaignSchema = new Schema ({
         maxLength: 200,
         trim: true,
     },
+    // Links campaigns to characters 
     characters: [{
         type: Schema.Types.ObjectId,
         ref: 'Character',
@@ -22,6 +24,7 @@ const campaignSchema = new Schema ({
         type: String,
         required: false,
     },
+    //Links campaigns to users
     users: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
