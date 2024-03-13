@@ -1,6 +1,8 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
+// Schema for character inventory
+// Still needs to be implemented in front-end
 const inventorySchema = new Schema ({
     itemName: {
         type: String,
